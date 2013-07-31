@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>js/jquery.taxonomybrowser.js - TaxonomyTree</title>
+    <title>js/jquery.taxonomyBrowser.js - TaxonomyTree</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -41,11 +41,13 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="../classes/MyClass.html">MyClass</a></li>
+                <li><a href="../classes/taxonomybrowser.html">taxonomybrowser</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/JQuery Taxonomy Browser Plugin.html">JQuery Taxonomy Browser Plugin</a></li>
             
             </ul>
         </div>
@@ -82,21 +84,24 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: js/jquery.taxonomybrowser.js</h1>
+                        <h1 class="file-heading">File: js/jquery.taxonomyBrowser.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/*! Taxonomy Browser - v0.1.0 - 2013-07-31
-* https://github.com/pebbleroad/jquery-taxonomybrowser
-* Copyright (c) 2013 Pebbleroad; Licensed MIT */
-
-;(function($){
+/**
+* Easily Browser through heirarchical list of taxonomies
+* @module JQuery Taxonomy Browser Plugin
+* @author
+*/
+;(function($, window, document){
 
     /**
     * This is the description for my class.
     *
-    * @class MyClass
+    * @class taxonomybrowser
     * @constructor
+    * @param el {Object} The list element
+    * @param options {Object}
     */
     
     $.taxonomyBrowser = function(el, options){
@@ -112,7 +117,15 @@
          */
 
         base.$el = $(el);
+
         base.el = el;
+
+
+        /*
+        * Template
+        */
+
+        base.template = Handlebars.compile(document.getElementById(&#x27;taxonomy_terms&#x27;).innerHTML);
         
         /* 
          * Add a reverse reference to the DOM object
@@ -121,25 +134,223 @@
         base.$el.data(&quot;taxonomyBrowser&quot;, base);
 
         /**
-         * Initializing Function
-         */
+        * @method Init
+        */
         
         base.init = function(){
             base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
             
+            /*
+                Read the json
+                Build Structure
+                Add click handlers
+            */
+
+
+            base.readjson().then(function(){
+                            
+
+              base.appendTaxonomy(base.root);
+
+              base.initEvents();
+
+            });
             
         };
         
+
+        /**
+        * Convert JSON to an key/value array
+        * @method readJSON
+        */
+
+        base.readjson = function(){
+
+            var root = [],
+                taxonomy = {},                
+                total,
+                deferred = $.Deferred(),
+                self = this;            
+
+            /**
+            * Request the JSON file
+            */
+
+            $.getJSON(base.options.json)
+                .then(function(tax){
+
+                  taxonomy = tax;
+                   
+                  total = taxonomy.length;
+
+                  for(var i =0; i &lt; total; i++){
+
+                    if(taxonomy[i].parent == base.options.rootValue) root.push(taxonomy[i]);                    
+
+                    var current = taxonomy[i],
+                        count = 0;
+
+                    
+                    /**
+                    * Check if current taxonomy id is in parent attribute
+                    */
+
+                    for(var j =0; j &lt; total; j++){
+                      if(current.id == taxonomy[j].parent) count++
+                    }
+
+                    /**
+                    * Add a new attribute for childrenCount
+                    */
+
+                    current.childrenCount = count;
+                  }
+                  
+
+                  /**
+                  * Root Taxonomy Terms
+                  */
+                  
+                  self.root = root;
+
+
+                  /**
+                  * Parse Taxonomy terms with children count
+                  */
+
+                  self.taxonomy = taxonomy;
+
+                  
+                  /**
+                  * Pass it back to then()
+                  */
+
+                  deferred.resolve();
+                   
+
+            });
+            
+            /**
+            * Return deferred promise
+            */
+
+            return deferred.promise();
+
+        };
+
+        /**
+        * Build Taxonomy Browse Interface
+        * @method appendTaxonomy
+        */
+
+
+        base.appendTaxonomy = function(taxonomy, depth){
+
+          /**
+          * Construct Root Elements
+          */
+          
+          var div = document.createElement(&#x27;div&#x27;),
+              grid = document.querySelector(&#x27;.grid&#x27;),
+              depth = depth || 0;
+
+          /**
+           * Set Attributes for the new Div
+           */
+               
+
+          div.className = &#x27;grid__item one-third&#x27;;
+          div.setAttribute(&#x27;data-depth&#x27;, depth);
+
+          /**
+           * Handlebars Compile
+           */
+
+          div.innerHTML = base.template({
+            taxonomies: taxonomy
+          });
+
+
+          /**
+           * Reusable currentDepth
+           */
+
+          this.currentDepth = depth;
+
+
+          /**
+           * Remove Other Facets
+           */
+
+          $(&#x27;body&#x27;).find(&#x27;.grid__item&#x27;).filter(function(){
+            return $(this).data(&#x27;depth&#x27;) &gt; (depth-1)
+          }).remove();
+
+          /**
+           * Append 
+           */
+
+          grid.appendChild(div);          
+          
+
+        };
+
+        /**
+        * Add events to the taxonomy browser
+        * @method initEvents
+        */
+
+        base.initEvents = function(){
+
+          var $terms = $(&#x27;.terms&#x27;);
+
+          $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.term&#x27;, function(e){
+
+            var children = base.getChildren(this.getAttribute(&#x27;data-id&#x27;)),
+                depth = Number($(this).closest(&#x27;div&#x27;).data(&#x27;depth&#x27;)) + 1;
+                        
+            if(children &amp;&amp; children.length) base.appendTaxonomy(children, depth);
+
+            e.preventDefault();
+          });
+
+        }
+
+
+        /**
+        * Get Child Taxonomies
+        * @method getChildren
+        * @param parent (String) Parent value
+        * @return taxonomy (Object)
+        */
         
+        base.getChildren = function(parent){
+
+          var tax = [];
+
+          for(var i = 0; i&lt; this.taxonomy.length; i++){
+            if(this.taxonomy[i].parent == parent) tax.push(this.taxonomy[i]);
+          }
+
+          return tax;
+
+        }
         
         /**
          *  Initializer
          */
+
         base.init();
     };
     
+    /**
+    * Default Options for Taxonomy Browser
+    * @method defaultOptions
+    */
+
     $.taxonomyBrowser.defaultOptions = {
-        json: &#x27;taxonomy.json&#x27;
+        json: &#x27;json/taxonomy.json&#x27;,
+        rootValue: null        
     };
     
     $.fn.taxonomyBrowser = function(options){
@@ -153,8 +364,29 @@
     $.fn.gettaxonomyBrowser = function(){
         this.data(&quot;taxonomyBrowser&quot;);
     };
+
+
+    /**
+    * Get unique values in the array
+    * @method Unique    
+    */
+
+    Array.prototype.unique = function(){
+       var u = {}, a = [];
+       for(var i = 0, l = this.length; i &lt; l; ++i){
+          if(u.hasOwnProperty(this[i])) {
+             continue;
+          }
+          a.push(this[i]);
+          u[this[i]] = 1;
+       }
+       return a;
+    }
+
+
+
     
-})(jQuery);
+})(jQuery, window, document, undefined);
     </pre>
 </div>
 

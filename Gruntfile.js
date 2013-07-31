@@ -72,7 +72,22 @@ module.exports = function(grunt) {
     copy:{
       css:{
         files: [
-          { expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' }
+          { expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/css' }
+        ]
+      },
+      html:{
+        files: [
+          { expand: true, cwd: './', src: ['./*.html'], dest: 'dist/'}
+        ]
+      },
+      js:{
+        files: [
+          { expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/js' }
+        ]
+      },
+      json:{
+        files: [
+          { expand: true, cwd: './json', src: ['./*.json'], dest: 'dist/json' }
         ]
       }
     }
@@ -89,6 +104,7 @@ module.exports = function(grunt) {
   // Default task
   grunt.registerTask('default', ['copy']);
   grunt.registerTask('dev', ['connect', 'watch']);
+  grunt.registerTask('build', ['copy']);
   grunt.registerTask('docs', ['yuidoc']);
   
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
