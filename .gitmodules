@@ -1,0 +1,3 @@
+[submodule "scss/inuit.css"]
+	path = scss/inuit.css
+	url = https://github.com/csswizardry/inuit.css.git

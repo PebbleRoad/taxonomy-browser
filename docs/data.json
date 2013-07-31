@@ -1,0 +1,69 @@
+{
+    "project": {
+        "name": "TaxonomyTree",
+        "description": "",
+        "version": "1.0.0",
+        "url": ""
+    },
+    "files": {
+        "js/jquery.taxonomybrowser.js": {
+            "name": "js/jquery.taxonomybrowser.js",
+            "modules": {},
+            "classes": {
+                "MyClass": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "MyClass": {
+            "name": "MyClass",
+            "shortname": "MyClass",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js/jquery.taxonomybrowser.js",
+            "line": 7,
+            "description": "This is the description for my class.",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "js/jquery.taxonomybrowser.js",
+            "line": 22,
+            "description": "Access to jQuery and DOM versions of element",
+            "class": "MyClass"
+        },
+        {
+            "file": "js/jquery.taxonomybrowser.js",
+            "line": 35,
+            "description": "Initializing Function",
+            "class": "MyClass"
+        },
+        {
+            "file": "js/jquery.taxonomybrowser.js",
+            "line": 47,
+            "description": "Initializer",
+            "class": "MyClass"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nAccess to jQuery and DOM versions of element",
+            "line": " js/jquery.taxonomybrowser.js:22"
+        },
+        {
+            "message": "Missing item type\nInitializing Function",
+            "line": " js/jquery.taxonomybrowser.js:35"
+        },
+        {
+            "message": "Missing item type\nInitializer",
+            "line": " js/jquery.taxonomybrowser.js:47"
+        }
+    ]
+}
