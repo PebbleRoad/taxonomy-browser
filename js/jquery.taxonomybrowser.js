@@ -217,7 +217,7 @@
           $('body').on('click', '.term', function(e){
 
             var children = base.getChildren(this.getAttribute('data-id')),
-                depth = Number($(this).closest('div').data('depth')) + 1;
+                depth = Number($(this).closest('.grid__item').data('depth')) + 1;
                         
             if(children && children.length) base.appendTaxonomy(children, depth);
 

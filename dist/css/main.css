@@ -2919,3 +2919,17 @@ label,
 .container {
   padding: 20px;
 }
+
+.terms--container {
+  border: 1px #ccc solid;
+  padding: 10px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+/* List */
+.terms {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
