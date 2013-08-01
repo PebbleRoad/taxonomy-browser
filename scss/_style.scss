@@ -2,13 +2,21 @@
 
 .container{
 	padding: 20px;
+	width: 960px;
+	margin: 0 auto;
+	color: #818285;
+}
+
+a{
+	text-decoration: none;
+	color: #444;
 }
 
 .terms--container{
-	border: 1px #ccc solid;
-	padding: 10px;
-	max-height: 400px;
+	border: 1px #ccc solid;	
+	height: 400px;
 	overflow: auto;
+	background: #f3f3f4;
 }
 
 /* List */
@@ -17,4 +25,96 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	text-transform: capitalize;
+
+	li{
+		margin: 0;
+		padding: 15px 10px;
+		padding-right: 40px;
+		border-bottom: 1px #b8bbbd solid;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+
+	li:hover{
+		background: lighten(#f3f3f4, 4%);
+
+	}
+
+	.active, .active:hover{
+		background: #37BFEF;
+		color: #fff;
+	}
+
+	p{
+		margin: 0;
+	}
+
+	.icon{
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		margin-top: -30px;
+		transition: all 0.2s ease-in;
+		opacity: 0;
+	}
+
+
+	.has-children {
+		.icon-chevron-thin-right{
+			opacity: 1;
+		}
+	}
+
+	.icon-search{
+		font-weight: normal;		
+		color: #fff;
+		right: 15px;		
+	}
+
+	.active {
+		.icon{
+			opacity: 0;
+		}
+		.icon-search{
+			opacity: 1;
+		}
+	}
+
+
+
+	
+}
+
+/* Has Children */
+
+.has-children{
+	//font-weight: bold;
+	.title{
+		font-weight: bold;
+	}
+}
+
+.grid-container{
+	height: 400px;
+	position: relative;
+}
+
+.grid-placeholder{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 400px;
+	width: 952px;
+
+	.grid__item{
+		height: 400px;
+		width: 317px;
+		float: left;
+	}
+
+	.terms--container{
+		border: none;
+	}
 }

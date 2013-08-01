@@ -161,7 +161,7 @@
           */
           
           var div = document.createElement('div'),
-              grid = document.querySelector('.grid'),
+              grid = document.querySelector('.grid-items'),
               depth = depth || 0;
 
           /**
@@ -198,9 +198,16 @@
 
           /**
            * Append 
-           */
+           */          
 
-          grid.appendChild(div);          
+          div.style.cssText = 'position: relative; opacity: 0; left: 0px';
+
+          if(depth < 3) grid.appendChild(div);
+          
+          $(div).animate({
+            opacity: 1,
+            left: 0
+          },200);
           
 
         };
@@ -216,10 +223,24 @@
 
           $('body').on('click', '.term', function(e){
 
-            var children = base.getChildren(this.getAttribute('data-id')),
-                depth = Number($(this).closest('.grid__item').data('depth')) + 1;
+            var $this = $(this),
+                children = base.getChildren(this.getAttribute('data-id')),
+                depth = Number($this.closest('.grid__item').data('depth')) + 1,
+                klass = $this.hasClass('active'),
+                url = $this.find('a').attr("href");
                         
-            if(children && children.length) base.appendTaxonomy(children, depth);
+            if(children && children.length && !klass) {
+              $this
+                .addClass('active')
+                .siblings()
+                .removeClass('active');                
+
+              base.appendTaxonomy(children, depth); 
+            }
+
+            if(klass){
+              window.location = url;
+            }
 
             e.preventDefault();
           });
