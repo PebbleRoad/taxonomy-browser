@@ -56,6 +56,7 @@ a{
 		right: 10px;
 		top: 50%;
 		margin-top: -30px;
+		margin-top: -45px\9;
 		transition: all 0.2s ease-in;
 		opacity: 0;
 	}
@@ -85,6 +86,31 @@ a{
 
 
 	
+}
+
+.lt-ie9{
+
+	.terms{
+		.icon{
+			display: none;
+		}
+
+		.has-children {
+			.icon-chevron-thin-right{
+				display: inline-block;
+			}
+		}
+
+		.active {
+			.icon{
+				display: none;
+			}
+			.icon-search{
+				display: inline-block;
+			}
+		}
+	}
+
 }
 
 /* Has Children */

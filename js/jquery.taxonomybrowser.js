@@ -48,6 +48,7 @@
         */
         
         base.init = function(){
+            
             base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
             
             /*
