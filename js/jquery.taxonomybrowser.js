@@ -11,11 +11,10 @@
     *
     * @class taxonomybrowser
     * @constructor
-    * @param el {Object} The list element
+    * @param el {Object} The Container element
     * @param {Object} [options] Default Options for Taxonomy Browser
     *   @param {String} [options.json] JSON File with the taxonomy structure || Required Properties: id, label, url, parent
     *   @param {String} [options.rootValue] Top parents have the attribute parent set to 'null'
-    *   @param {String} [options.container] Element in your html where the columns will be appended
     *   @param {String} [options.columnClass] Class name of generated column
     *   @param {Number} [options.columns] Maximum number of columns
     *   @param {Number} [options.columnHeight] Height of the columns
@@ -43,11 +42,6 @@
         
         base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
         
-        /**
-         * Container
-         */
-        
-        base.$container = $(base.options.container);
 
 
         /*
@@ -100,7 +94,7 @@
             
             var $container = $('<div />', {
                 'class': 'miller--placeholder'
-                }).appendTo(base.$container),
+                }).appendTo(base.$el),
                 columnWidth = 100/base.options.columns;
             
             for(var i = 0; i< base.options.columns; i++){
@@ -245,7 +239,7 @@
            * Remove Other Facets
            */
 
-          base.$container.find(base.options.columnClass).filter(function(){
+          base.$el.find(base.options.columnClass).filter(function(){
             return $(this).data('depth') > (depth-1)
           }).remove();
 
@@ -253,7 +247,7 @@
            * Append 
            */          
           
-          if(depth < base.options.columns) $column.appendTo(base.$container);
+          if(depth < base.options.columns) $column.appendTo(base.$el);
 
 
         };
@@ -265,7 +259,7 @@
 
         base.initEvents = function(){
 
-          base.$container.on('click', '.term', function(e){
+          base.$el.on('click', '.term', function(e){
 
             var $this = $(this),
                 children = base.getChildren(this.getAttribute('data-id')),
@@ -327,7 +321,6 @@
     $.taxonomyBrowser.defaultOptions = {
         json: 'json/taxonomy.json', 
         rootValue: null, 
-        container: '.miller-container', 
         columnClass: '.miller--column', 
         columns: 3, 
         columnHeight: 400 
