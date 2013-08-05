@@ -63,6 +63,7 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
+          hostname: null,
           port: 8000,
           base: './'
         }
@@ -89,19 +90,19 @@ module.exports = function(grunt) {
         files: [
           { expand: true, cwd: './json', src: ['./*.json'], dest: 'dist/json' }
         ]
+      },
+      img:{
+        files: [
+          { expand: true, cwd: './img', src: ['./*'], dest: 'dist/img' }
+        ]
       }
     }
 
 
   });
 
-  /*grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  */
-
   // Default task
+  
   grunt.registerTask('default', ['copy']);
   grunt.registerTask('dev', ['connect', 'watch']);
   grunt.registerTask('build', ['copy']);

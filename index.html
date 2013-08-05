@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/main.css">
@@ -10,45 +7,37 @@
 </head>
 <body>
 	
-	<!-- Container -->
-	<div class="container">
 
 	<h3>Facets Browse Interface</h3>
 	
-	<!-- Grid container -->
-	<div class="grid-container">
-		<div class="grid-placeholder grid">
-			<div class="grid__item one-third"><div class="terms--container"></div></div>
-			<div class="grid__item one-third"><div class="terms--container"></div></div>
-			<div class="grid__item one-third"><div class="terms--container"></div></div>
-		</div>
-		<div class="grid grid-items">
-
-
-			
-			
-		</div>
+	<!-- Miller container -->
+	<div class="miller-container">				
+		
 	</div>
-	<!-- / Grid container -->
+	<!-- / Miller container -->
 
 
-	</div>
-	<!-- / Container -->
 
 
 	<script type="text/x-handlebars-template" id="taxonomy_terms">
 		
-		<div class="terms--container">
-		<ul class="terms">
-			{{#each taxonomies}}
-				<li class="term {{#if childrenCount}}has-children{{/if}}" data-id="{{id}}">
-					<a href="{{url}}"><span class="title">{{label}}</span> <em class="icon icon-chevron-thin-right icon-chevron-right"></em> <em class="icon icon-search"></em></a>{{#if description}}<p>{{description}}</p>{{/if}}
-				</li>
-			{{/each}}
-		</ul>
-		</div>
-	
+		<div class="miller--terms--container">
+  		<ul class="terms">
+  			{{#each taxonomies}}
+  				<li class="term {{#if childrenCount}}has-children{{/if}}" data-id="{{id}}">
+  					<a href="{{url}}">
+  					  <span class="title">{{label}}</span> 
+  					  <em class="icon icon-arrow"></em> <em class="icon icon-search" title="Search for {{label}}"></em>
+  					</a>  					
+  					{{#if description}}<span class="description">{{description}}</span>{{/if}}
+  				</li>
+  			{{/each}}
+  		</ul>
+		</div>	
+		
 	</script>	
+	
+	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="js/handlebars.js"></script>
 	<script src="js/jquery.taxonomyBrowser.js"></script>
@@ -56,7 +45,9 @@
 		$(function(){
 			
 			$.taxonomyBrowser();
+			
 		});
 	</script>
+	
 </body>
 </html>

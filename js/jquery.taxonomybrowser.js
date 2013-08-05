@@ -1,7 +1,8 @@
 /**
 * Easily Browser through heirarchical list of taxonomies
-* @module JQuery Taxonomy Browser Plugin
-* @author
+* @lastModified 6 August 2013 12:19AM
+* @author Vinay@artminister.com
+* @url http://github.com/PebbleRoad/jquery-taxonomy-browser
 */
 ;(function($, window, document){
 
@@ -11,7 +12,13 @@
     * @class taxonomybrowser
     * @constructor
     * @param el {Object} The list element
-    * @param options {Object}
+    * @param {Object} [options] Default Options for Taxonomy Browser
+    *   @param {String} [options.json] JSON File with the taxonomy structure || Required Properties: id, label, url, parent
+    *   @param {String} [options.rootValue] Top parents have the attribute parent set to 'null'
+    *   @param {String} [options.container] Element in your html where the columns will be appended
+    *   @param {String} [options.columnClass] Class name of generated column
+    *   @param {Number} [options.columns] Maximum number of columns
+    *   @param {Number} [options.columnHeight] Height of the columns
     */
     
     $.taxonomyBrowser = function(el, options){
@@ -29,6 +36,18 @@
         base.$el = $(el);
 
         base.el = el;
+        
+        /**
+         * Options
+         */
+        
+        base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
+        
+        /**
+         * Container
+         */
+        
+        base.$container = $(base.options.container);
 
 
         /*
@@ -44,23 +63,26 @@
         base.$el.data("taxonomyBrowser", base);
 
         /**
+        * Initializes the Plugin
         * @method Init
         */
         
         base.init = function(){
             
-            base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
+            /**
+             * Construct Placeholder Columns
+             */
             
-            /*
-                Read the json
-                Build Structure
-                Add click handlers
-            */
-
+            base.buildPlaceholder();
+            
+            /**
+             * 1. Read JSON File
+             * 2. Append Columns
+             * 3. Add Click Events
+             */
 
             base.readjson().then(function(){
                             
-
               base.appendTaxonomy(base.root);
 
               base.initEvents();
@@ -69,9 +91,35 @@
             
         };
         
+        /**
+         * Add Placeholder Columns based on column number, class and height
+         * @method buildPlaceholder
+         */
+         
+        base.buildPlaceholder = function(){
+            
+            var $container = $('<div />', {
+                'class': 'miller--placeholder'
+                }).appendTo(base.$container),
+                columnWidth = 100/base.options.columns;
+            
+            for(var i = 0; i< base.options.columns; i++){
+                $('<div/>', {
+                    'class': 'miller--placeholder--column'                    
+                }).css({
+                    'height': base.options.columnHeight,
+                    'width': columnWidth + '%',
+                    'left': i * columnWidth + '%'
+                }).html('<div class="miller--placeholder__background" />').appendTo($container);
+                
+            }
+            
+            
+        };
+        
 
         /**
-        * Convert JSON to an key/value array
+        * Convert JSON to an key:value array
         * @method readJSON
         */
 
@@ -152,6 +200,8 @@
         /**
         * Build Taxonomy Browse Interface
         * @method appendTaxonomy
+        * @param taxonomy {Object} Taxonomy object that will be appended
+        * @param depth {Number} Current depth of the columns
         */
 
 
@@ -161,25 +211,27 @@
           * Construct Root Elements
           */
           
-          var div = document.createElement('div'),
-              grid = document.querySelector('.grid-items'),
-              depth = depth || 0;
+          var depth = depth || 0,
+              columnWidth = 100/base.options.columns,
+              $column = $('<div />', {
+                'class': base.options.columnClass.replace('.',''),
+                'data-depth': depth
+              }).css({
+                'height': base.options.columnHeight,
+                'width': columnWidth + '%'
+              });
 
           /**
            * Set Attributes for the new Div
            */
-               
-
-          div.className = 'grid__item one-third';
-          div.setAttribute('data-depth', depth);
 
           /**
            * Handlebars Compile
            */
 
-          div.innerHTML = base.template({
+          $column.html(base.template({
             taxonomies: taxonomy
-          });
+          }));
 
 
           /**
@@ -193,23 +245,16 @@
            * Remove Other Facets
            */
 
-          $('body').find('.grid__item').filter(function(){
+          base.$container.find(base.options.columnClass).filter(function(){
             return $(this).data('depth') > (depth-1)
           }).remove();
 
           /**
            * Append 
            */          
-
-          div.style.cssText = 'position: relative; opacity: 0; left: 0px';
-
-          if(depth < 3) grid.appendChild(div);
           
-          $(div).animate({
-            opacity: 1,
-            left: 0
-          },200);
-          
+          if(depth < base.options.columns) $column.appendTo(base.$container);
+
 
         };
 
@@ -220,28 +265,29 @@
 
         base.initEvents = function(){
 
-          var $terms = $('.terms');
-
-          $('body').on('click', '.term', function(e){
+          base.$container.on('click', '.term', function(e){
 
             var $this = $(this),
                 children = base.getChildren(this.getAttribute('data-id')),
-                depth = Number($this.closest('.grid__item').data('depth')) + 1,
+                depth = Number($this.closest(base.options.columnClass).data('depth')) + 1,
                 klass = $this.hasClass('active'),
                 url = $this.find('a').attr("href");
                         
             if(children && children.length && !klass) {
+              
               $this
                 .addClass('active')
                 .siblings()
                 .removeClass('active');                
 
               base.appendTaxonomy(children, depth); 
+              
+            }else{
+              
+              window.location = url;  
+              
             }
 
-            if(klass){
-              window.location = url;
-            }
 
             e.preventDefault();
           });
@@ -252,7 +298,7 @@
         /**
         * Get Child Taxonomies
         * @method getChildren
-        * @param parent (String) Parent value
+        * @param parent (String) Parent Taxonomy ID
         * @return taxonomy (Object)
         */
         
@@ -275,14 +321,16 @@
         base.init();
     };
     
-    /**
-    * Default Options for Taxonomy Browser
-    * @method defaultOptions
-    */
+    
+    // Default Options
 
     $.taxonomyBrowser.defaultOptions = {
-        json: 'json/taxonomy.json',
-        rootValue: null        
+        json: 'json/taxonomy.json', 
+        rootValue: null, 
+        container: '.miller-container', 
+        columnClass: '.miller--column', 
+        columns: 3, 
+        columnHeight: 400 
     };
 
 

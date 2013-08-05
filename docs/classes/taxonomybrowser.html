@@ -47,8 +47,6 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="../modules/JQuery Taxonomy Browser Plugin.html">JQuery Taxonomy Browser Plugin</a></li>
-            
             </ul>
         </div>
     </div>
@@ -92,14 +90,10 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/js_jquery.taxonomyBrowser.js.html#l8"><code>js&#x2F;jquery.taxonomyBrowser.js:8</code></a>
+            Defined in: <a href="../files/js_jquery.taxonomybrowser.js.html#l7"><code>js&#x2F;jquery.taxonomybrowser.js:7</code></a>
         </div>
     
 
-    
-        
-            Module: <a href="../modules/JQuery Taxonomy Browser Plugin.html">JQuery Taxonomy Browser Plugin</a>
-        
     
 
     
@@ -130,7 +124,7 @@
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code class="optional">[options]</code>
                     
                 </li>
             
@@ -163,7 +157,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l8"><code>js&#x2F;jquery.taxonomyBrowser.js:8</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l7"><code>js&#x2F;jquery.taxonomybrowser.js:7</code></a>
         
         </p>
 
@@ -201,16 +195,112 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
+                        <code class="param-name optional">[options]</code>
                         <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>Default Options for Taxonomy Browser</p>
+
                     </div>
 
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[json]</code>
+                                    <span class="type">String</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>JSON File with the taxonomy structure || Required Properties: id, label, url, parent</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[rootValue]</code>
+                                    <span class="type">String</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Top parents have the attribute parent set to &#39;null&#39;</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[container]</code>
+                                    <span class="type">String</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Element in your html where the columns will be appended</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[columnClass]</code>
+                                    <span class="type">String</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Class name of generated column</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[columns]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum number of columns</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[columnHeight]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Height of the columns</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -256,7 +346,14 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_defaultOptions">defaultOptions</a>
+                                <a href="#method_buildPlaceholder">buildPlaceholder</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_fn.taxonomyBrowser">fn.taxonomyBrowser</a>
 
                                 
                                 
@@ -290,13 +387,6 @@
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_Unique">Unique</a>
-
-                                
-                                
-                            </li>
-                        
                     </ul>
                 </div>
             
@@ -317,7 +407,23 @@
     <h3 class="name"><code>appendTaxonomy</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>taxonomy</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>depth</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -345,7 +451,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l151"><code>js&#x2F;jquery.taxonomyBrowser.js:151</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l198"><code>js&#x2F;jquery.taxonomybrowser.js:198</code></a>
         
         </p>
 
@@ -361,6 +467,46 @@
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">taxonomy</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Taxonomy object that will be appended</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">depth</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Current depth of the columns</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
 
@@ -368,8 +514,8 @@
 </div>
 
                 
-                    <div id="method_defaultOptions" class="method item">
-    <h3 class="name"><code>defaultOptions</code></h3>
+                    <div id="method_buildPlaceholder" class="method item">
+    <h3 class="name"><code>buildPlaceholder</code></h3>
 
     
         <span class="paren">()</span>
@@ -400,7 +546,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l256"><code>js&#x2F;jquery.taxonomyBrowser.js:256</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l92"><code>js&#x2F;jquery.taxonomybrowser.js:92</code></a>
         
         </p>
 
@@ -411,7 +557,62 @@
     </div>
 
     <div class="description">
-        <p>Default Options for Taxonomy Browser</p>
+        <p>Add Placeholder Columns based on column number, class and height</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_fn.taxonomyBrowser" class="method item">
+    <h3 class="name"><code>fn.taxonomyBrowser</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l335"><code>js&#x2F;jquery.taxonomybrowser.js:335</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>jQuery Plugin method</p>
 
     </div>
 
@@ -469,7 +670,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l230"><code>js&#x2F;jquery.taxonomyBrowser.js:230</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l296"><code>js&#x2F;jquery.taxonomybrowser.js:296</code></a>
         
         </p>
 
@@ -499,7 +700,7 @@
                     
 
                     <div class="param-description">
-                        <p>(String) Parent value</p>
+                        <p>(String) Parent Taxonomy ID</p>
 
                     </div>
 
@@ -560,7 +761,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l46"><code>js&#x2F;jquery.taxonomyBrowser.js:46</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l63"><code>js&#x2F;jquery.taxonomybrowser.js:63</code></a>
         
         </p>
 
@@ -571,7 +772,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Initializes the Plugin</p>
+
     </div>
 
     
@@ -614,7 +816,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l208"><code>js&#x2F;jquery.taxonomyBrowser.js:208</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l259"><code>js&#x2F;jquery.taxonomybrowser.js:259</code></a>
         
         </p>
 
@@ -669,7 +871,7 @@
             
         
         
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l72"><code>js&#x2F;jquery.taxonomyBrowser.js:72</code></a>
+        <a href="../files/js_jquery.taxonomybrowser.js.html#l119"><code>js&#x2F;jquery.taxonomybrowser.js:119</code></a>
         
         </p>
 
@@ -680,62 +882,7 @@
     </div>
 
     <div class="description">
-        <p>Convert JSON to an key/value array</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_Unique" class="method item">
-    <h3 class="name"><code>Unique</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/js_jquery.taxonomyBrowser.js.html#l279"><code>js&#x2F;jquery.taxonomyBrowser.js:279</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Get unique values in the array</p>
+        <p>Convert JSON to an key:value array</p>
 
     </div>
 

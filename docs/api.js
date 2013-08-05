@@ -3,15 +3,7 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "taxonomybrowser"
     ],
-    "modules": [
-        "JQuery Taxonomy Browser Plugin"
-    ],
-    "allModules": [
-        {
-            "displayName": "JQuery Taxonomy Browser Plugin",
-            "name": "JQuery Taxonomy Browser Plugin",
-            "description": "Easily Browser through heirarchical list of taxonomies"
-        }
-    ]
+    "modules": [],
+    "allModules": []
 } };
 });

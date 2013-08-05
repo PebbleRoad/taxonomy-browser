@@ -1,5 +1,159 @@
-$use-grids: true;
+// Variables
 
-@import "inuit.css/inuit";
-@import "style";
-@import "entypo";
+$column-margin: 10px;
+$placeholder-column-background: #f3f3f4;
+
+/* Base */
+
+html{
+  font-family:Arial, Helvetica;
+  color:#818285;
+  line-height:1.4;
+  width:80%;
+  margin:0 auto;
+}
+
+  /* Box Sizing : IE 8 and above */
+
+  *{
+    box-sizing: border-box;
+  }
+
+  /* Links */
+
+  a{
+  	text-decoration: none;
+  	color: #444;
+  }
+
+
+
+
+
+/* Container */
+
+.miller-container{
+  position:relative;
+}
+
+/* PlaceHolder Columns */
+
+.miller--placeholder{
+  position:relative;
+}
+
+.miller--placeholder--column{
+  position:absolute;
+  top: 0;
+}
+
+.miller--placeholder__background{
+  background: $placeholder-column-background;
+  margin:0 $column-margin; /* Column Width */
+  height:100%;
+}
+
+/* Columns */
+
+.miller--column{
+  float:left;
+  width:33.333%;
+  position:relative;
+  z-index: 1;
+}
+
+/* Terms Container */
+
+.miller--terms--container{
+  border: 1px #ccc solid;	
+  height:100%;
+	margin:0 $column-margin;  /* Column Width */
+	overflow:auto;
+}
+
+
+
+
+
+
+
+
+
+/* List */
+
+.terms{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-transform: capitalize;
+
+	li{
+		margin: 0;
+		padding: 15px 10px;
+		padding-right: 40px;
+		border-bottom: 1px #b8bbbd solid;
+		cursor: pointer;
+		position:relative;
+  }
+  
+  li:hover{
+		background: lighten(#f3f3f4, 4%);
+	}
+	
+	/* Active Taxonomy */
+	
+	.active, .active:hover{
+		background: #37BFEF;
+		color: #fff;
+	}
+	
+	/* Title */
+	
+	.title{
+	  display:block;
+	}
+	
+	/* Parent Taxonomy */
+	
+	.has-children{
+  	.title{
+  		font-weight: bold;
+  	}
+  }
+  
+  
+  /* Icons */
+  
+  .icon{
+    position:absolute;
+    width:20px;
+    height:20px;
+    right:10px;    
+    top: 50%;
+    margin-top:-10px;
+    transition: all 0.2s ease-in;
+  }
+  
+  .icon-arrow{
+    background:url(../img/icons.png) 0 -20px no-repeat;
+  }
+  
+  .icon-search{
+    background:url(../img/icons.png) -20px 0 no-repeat;
+    opacity:0;
+    display:none\9; /* IE 8 Hack */
+  }
+  
+  /* Active Taxonomy */
+  
+  .active .icon-arrow{
+    opacity:0;
+    display:none\9; /* IE 8 Hack */
+  }
+  
+  .active .icon-search{
+    opacity:1;
+    display:block\9; /* IE 8 Hack */
+  }
+  
+}
