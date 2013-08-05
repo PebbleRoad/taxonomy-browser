@@ -6,6 +6,8 @@
 
 Facet File is located in /json/taxonomy.json
 
+![Screenshot](http://pebbleroad.github.io/jquery-taxonomy-browser/dist/img/screenshot.jpg)
+
 ### Available Plugin options
 
 1. Number of columns can be customized.
