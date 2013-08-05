@@ -27,14 +27,13 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 7,
+            "line": 9,
             "description": "This is the description for my class.",
-            "author": "Vinay@artminister.com",
             "is_constructor": 1,
             "params": [
                 {
                     "name": "el",
-                    "description": "The list element",
+                    "description": "The Container element",
                     "type": "Object"
                 },
                 {
@@ -52,12 +51,6 @@
                         {
                             "name": "rootValue",
                             "description": "Top parents have the attribute parent set to 'null'",
-                            "type": "String",
-                            "optional": true
-                        },
-                        {
-                            "name": "container",
-                            "description": "Element in your html where the columns will be appended",
                             "type": "String",
                             "optional": true
                         },
@@ -89,29 +82,28 @@
             "file": "js/jquery.taxonomybrowser.js",
             "line": 1,
             "description": "Easily Browser through heirarchical list of taxonomies",
+            "lastmodified": "6 August 2013 12:19AM",
+            "author": "Vinay@artminister.com",
+            "url": [
+                "http://github.com/PebbleRoad/jquery-taxonomy-browser"
+            ],
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 30,
+            "line": 31,
             "description": "Access to jQuery and DOM versions of element",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 38,
+            "line": 39,
             "description": "Options",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 44,
-            "description": "Container",
-            "class": "taxonomybrowser"
-        },
-        {
-            "file": "js/jquery.taxonomybrowser.js",
-            "line": 63,
+            "line": 59,
             "description": "Initializes the Plugin",
             "itemtype": "method",
             "name": "Init",
@@ -119,19 +111,19 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 70,
+            "line": 66,
             "description": "Construct Placeholder Columns",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 76,
+            "line": 72,
             "description": "1. Read JSON File\n2. Append Columns\n3. Add Click Events",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 92,
+            "line": 88,
             "description": "Add Placeholder Columns based on column number, class and height",
             "itemtype": "method",
             "name": "buildPlaceholder",
@@ -139,7 +131,7 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 119,
+            "line": 115,
             "description": "Convert JSON to an key:value array",
             "itemtype": "method",
             "name": "readJSON",
@@ -147,49 +139,49 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 132,
+            "line": 128,
             "description": "Request the JSON file",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 151,
+            "line": 147,
             "description": "Check if current taxonomy id is in parent attribute",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 159,
+            "line": 155,
             "description": "Add a new attribute for childrenCount",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 167,
+            "line": 163,
             "description": "Root Taxonomy Terms",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 174,
+            "line": 170,
             "description": "Parse Taxonomy terms with children count",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 181,
+            "line": 177,
             "description": "Pass it back to then()",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 190,
+            "line": 186,
             "description": "Return deferred promise",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 198,
+            "line": 194,
             "description": "Build Taxonomy Browse Interface",
             "itemtype": "method",
             "name": "appendTaxonomy",
@@ -209,43 +201,43 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 208,
+            "line": 204,
             "description": "Construct Root Elements",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 222,
+            "line": 218,
             "description": "Set Attributes for the new Div",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 226,
+            "line": 222,
             "description": "Handlebars Compile",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 235,
+            "line": 231,
             "description": "Reusable currentDepth",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 242,
+            "line": 238,
             "description": "Remove Other Facets",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 250,
+            "line": 246,
             "description": "Append",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 259,
+            "line": 255,
             "description": "Add events to the taxonomy browser",
             "itemtype": "method",
             "name": "initEvents",
@@ -253,7 +245,7 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 296,
+            "line": 292,
             "description": "Get Child Taxonomies",
             "itemtype": "method",
             "name": "getChildren",
@@ -270,13 +262,13 @@
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 315,
+            "line": 311,
             "description": "Initializer",
             "class": "taxonomybrowser"
         },
         {
             "file": "js/jquery.taxonomybrowser.js",
-            "line": 335,
+            "line": 330,
             "description": "jQuery Plugin method",
             "itemtype": "method",
             "name": "fn.taxonomyBrowser",
@@ -285,84 +277,84 @@
     ],
     "warnings": [
         {
+            "message": "unknown tag: lastmodified",
+            "line": " js/jquery.taxonomybrowser.js:1"
+        },
+        {
             "message": "Missing item type\nEasily Browser through heirarchical list of taxonomies",
             "line": " js/jquery.taxonomybrowser.js:1"
         },
         {
             "message": "Missing item type\nAccess to jQuery and DOM versions of element",
-            "line": " js/jquery.taxonomybrowser.js:30"
+            "line": " js/jquery.taxonomybrowser.js:31"
         },
         {
             "message": "Missing item type\nOptions",
-            "line": " js/jquery.taxonomybrowser.js:38"
-        },
-        {
-            "message": "Missing item type\nContainer",
-            "line": " js/jquery.taxonomybrowser.js:44"
+            "line": " js/jquery.taxonomybrowser.js:39"
         },
         {
             "message": "Missing item type\nConstruct Placeholder Columns",
-            "line": " js/jquery.taxonomybrowser.js:70"
+            "line": " js/jquery.taxonomybrowser.js:66"
         },
         {
             "message": "Missing item type\n1. Read JSON File\n2. Append Columns\n3. Add Click Events",
-            "line": " js/jquery.taxonomybrowser.js:76"
+            "line": " js/jquery.taxonomybrowser.js:72"
         },
         {
             "message": "Missing item type\nRequest the JSON file",
-            "line": " js/jquery.taxonomybrowser.js:132"
+            "line": " js/jquery.taxonomybrowser.js:128"
         },
         {
             "message": "Missing item type\nCheck if current taxonomy id is in parent attribute",
-            "line": " js/jquery.taxonomybrowser.js:151"
+            "line": " js/jquery.taxonomybrowser.js:147"
         },
         {
             "message": "Missing item type\nAdd a new attribute for childrenCount",
-            "line": " js/jquery.taxonomybrowser.js:159"
+            "line": " js/jquery.taxonomybrowser.js:155"
         },
         {
             "message": "Missing item type\nRoot Taxonomy Terms",
-            "line": " js/jquery.taxonomybrowser.js:167"
+            "line": " js/jquery.taxonomybrowser.js:163"
         },
         {
             "message": "Missing item type\nParse Taxonomy terms with children count",
-            "line": " js/jquery.taxonomybrowser.js:174"
+            "line": " js/jquery.taxonomybrowser.js:170"
         },
         {
             "message": "Missing item type\nPass it back to then()",
-            "line": " js/jquery.taxonomybrowser.js:181"
+            "line": " js/jquery.taxonomybrowser.js:177"
         },
         {
             "message": "Missing item type\nReturn deferred promise",
-            "line": " js/jquery.taxonomybrowser.js:190"
+            "line": " js/jquery.taxonomybrowser.js:186"
         },
         {
             "message": "Missing item type\nConstruct Root Elements",
-            "line": " js/jquery.taxonomybrowser.js:208"
+            "line": " js/jquery.taxonomybrowser.js:204"
         },
         {
             "message": "Missing item type\nSet Attributes for the new Div",
-            "line": " js/jquery.taxonomybrowser.js:222"
+            "line": " js/jquery.taxonomybrowser.js:218"
         },
         {
             "message": "Missing item type\nHandlebars Compile",
-            "line": " js/jquery.taxonomybrowser.js:226"
+            "line": " js/jquery.taxonomybrowser.js:222"
         },
         {
             "message": "Missing item type\nReusable currentDepth",
-            "line": " js/jquery.taxonomybrowser.js:235"
+            "line": " js/jquery.taxonomybrowser.js:231"
         },
         {
             "message": "Missing item type\nRemove Other Facets",
-            "line": " js/jquery.taxonomybrowser.js:242"
+            "line": " js/jquery.taxonomybrowser.js:238"
         },
         {
             "message": "Missing item type\nAppend",
-            "line": " js/jquery.taxonomybrowser.js:250"
+            "line": " js/jquery.taxonomybrowser.js:246"
         },
         {
             "message": "Missing item type\nInitializer",
-            "line": " js/jquery.taxonomybrowser.js:315"
+            "line": " js/jquery.taxonomybrowser.js:311"
         }
     ]
 }

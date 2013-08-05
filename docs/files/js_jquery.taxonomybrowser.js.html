@@ -88,20 +88,21 @@
     <pre class="code prettyprint linenums">
 /**
 * Easily Browser through heirarchical list of taxonomies
-* 
+* @lastModified 6 August 2013 12:19AM
+* @author Vinay@artminister.com
+* @url http://github.com/PebbleRoad/jquery-taxonomy-browser
 */
 ;(function($, window, document){
 
     /**
     * This is the description for my class.
-    * @author Vinay@artminister.com
+    *
     * @class taxonomybrowser
     * @constructor
-    * @param el {Object} The list element
+    * @param el {Object} The Container element
     * @param {Object} [options] Default Options for Taxonomy Browser
     *   @param {String} [options.json] JSON File with the taxonomy structure || Required Properties: id, label, url, parent
     *   @param {String} [options.rootValue] Top parents have the attribute parent set to &#x27;null&#x27;
-    *   @param {String} [options.container] Element in your html where the columns will be appended
     *   @param {String} [options.columnClass] Class name of generated column
     *   @param {Number} [options.columns] Maximum number of columns
     *   @param {Number} [options.columnHeight] Height of the columns
@@ -129,11 +130,6 @@
         
         base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
         
-        /**
-         * Container
-         */
-        
-        base.$container = $(base.options.container);
 
 
         /*
@@ -186,7 +182,7 @@
             
             var $container = $(&#x27;&lt;div /&gt;&#x27;, {
                 &#x27;class&#x27;: &#x27;miller--placeholder&#x27;
-                }).appendTo(base.$container),
+                }).appendTo(base.$el),
                 columnWidth = 100/base.options.columns;
             
             for(var i = 0; i&lt; base.options.columns; i++){
@@ -331,7 +327,7 @@
            * Remove Other Facets
            */
 
-          base.$container.find(base.options.columnClass).filter(function(){
+          base.$el.find(base.options.columnClass).filter(function(){
             return $(this).data(&#x27;depth&#x27;) &gt; (depth-1)
           }).remove();
 
@@ -339,7 +335,7 @@
            * Append 
            */          
           
-          if(depth &lt; base.options.columns) $column.appendTo(base.$container);
+          if(depth &lt; base.options.columns) $column.appendTo(base.$el);
 
 
         };
@@ -351,7 +347,7 @@
 
         base.initEvents = function(){
 
-          base.$container.on(&#x27;click&#x27;, &#x27;.term&#x27;, function(e){
+          base.$el.on(&#x27;click&#x27;, &#x27;.term&#x27;, function(e){
 
             var $this = $(this),
                 children = base.getChildren(this.getAttribute(&#x27;data-id&#x27;)),
@@ -413,7 +409,6 @@
     $.taxonomyBrowser.defaultOptions = {
         json: &#x27;json/taxonomy.json&#x27;, 
         rootValue: null, 
-        container: &#x27;.miller-container&#x27;, 
         columnClass: &#x27;.miller--column&#x27;, 
         columns: 3, 
         columnHeight: 400 

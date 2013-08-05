@@ -11,11 +11,10 @@
     *
     * @class taxonomybrowser
     * @constructor
-    * @param el {Object} The list element
+    * @param el {Object} The Container element
     * @param {Object} [options] Default Options for Taxonomy Browser
     *   @param {String} [options.json] JSON File with the taxonomy structure || Required Properties: id, label, url, parent
     *   @param {String} [options.rootValue] Top parents have the attribute parent set to 'null'
-    *   @param {String} [options.container] Element in your html where the columns will be appended
     *   @param {String} [options.columnClass] Class name of generated column
     *   @param {Number} [options.columns] Maximum number of columns
     *   @param {Number} [options.columnHeight] Height of the columns
