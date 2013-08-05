@@ -1,5 +1,11 @@
 ## Facet Browse Interface (aka Miller Columns)
 
+### Demo
+
+[http://pebbleroad.github.io/jquery-taxonomy-browser/dist/](http://pebbleroad.github.io/jquery-taxonomy-browser/dist/)
+
+Facet File is located in /json/taxonomy.json
+
 ### How to use
 
 1. Install Grunt
