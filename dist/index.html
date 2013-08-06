@@ -16,12 +16,6 @@
 	</div>
 	<!-- / Miller container -->
 
-	<!-- Miller container -->
-	<div class="miller-container">				
-		
-	</div>
-	<!-- / Miller container -->
-
 
 
 
@@ -50,7 +44,9 @@
 	<script>
 		$(function(){
 			
-			$('.miller-container').taxonomyBrowser();
+			$('.miller-container').taxonomyBrowser({
+			  columns: 4
+			});
 			
 		});
 	</script>
