@@ -281,12 +281,6 @@
           }));
 
 
-          /**
-           * Reusable currentDepth
-           */
-
-          this.currentDepth = depth;
-
 
           /**
            * Remove Other Facets
@@ -326,13 +320,12 @@
         base.getAttributes = function(id, attr){
 
           var attrValue;
-          //console.log('id '+ id );
+          
           for(var i = 0; i< this.taxonomy.length; i++){            
-            //console.log(this.taxonomy[i][id]);
+            
             if(this.taxonomy[i]["id"] == id) attrValue = this.taxonomy[i][attr];
-          }
 
-          //console.log(attrValue);
+          }
 
           return attrValue;
 

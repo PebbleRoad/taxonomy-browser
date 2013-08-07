@@ -1,14 +1,18 @@
 (function($){
+    
     if(!$.taxonomyBrowser){
         $.taxonomyBrowser = new Object();
     };
     
     $.taxonomyBrowser.keys = function(el, options){
+        
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
+
         var base = this;
         
         // Access to jQuery and DOM versions of element
+
         base.$el = $(el);
 
         base.el = el;
@@ -18,19 +22,24 @@
             KEYLEFT = 37,
             KEYRIGHT = 39;
         
+        
         // Add a reverse reference to the DOM object
 
         base.$el.data("taxonomyBrowser.keys", base);
 
-
         
         base.init = function(){
+            
             base.options = $.extend({},base.$el.data('taxonomyBrowser').options, options);
             
-            // Put your initialization code here
+            /*
+              Initialize once taxonomyBrowser Root column has been added
+             */
 
             base.$el.on('root_column_added', function(){
-            	base.KeyEvents.init();            
+            	
+              base.KeyEvents.init();            
+
             });
 
         };
@@ -64,8 +73,7 @@
            
             /**
              * KeyDown Event Handler
-             * @param  {[type]} e
-             * @return {[type]}
+             * @param  {[type]} event             
              */
             
             base.$el.keydown(function(event){
@@ -102,6 +110,7 @@
                   event.which == KEYRIGHT ){
 
                 event.preventDefault();
+              
               }
               
               
