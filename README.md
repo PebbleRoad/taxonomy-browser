@@ -16,8 +16,8 @@ Facet File is located in /json/taxonomy.json
 
 ### Planned Updates
 
-1. Keyboard Support : Done
-2. Mobile (Responsive): To do
+1. Keyboard Support : *Done*
+2. Mobile (Responsive): *Done*
 3. SKOS Support: [http://www.w3.org/2004/02/skos/](http://www.w3.org/2004/02/skos/)
 
 ### How to use
