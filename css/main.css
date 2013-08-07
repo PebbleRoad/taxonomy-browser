@@ -3,7 +3,7 @@ html {
   font-family: Arial, Helvetica;
   color: #818285;
   line-height: 1.4;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -32,7 +32,7 @@ a {
 
 /* PlaceHolder Columns */
 .miller--placeholder {
-  position: relative;
+  display: block;
 }
 
 .miller--placeholder--column {
@@ -53,6 +53,12 @@ a {
   width: 33.333%;
   position: relative;
   z-index: 1;
+  background: none;
+}
+
+/* Terms Selection */
+.miller--terms--selection {
+  display: none;
 }
 
 /* Terms Container */
@@ -134,4 +140,53 @@ a {
   opacity: 1;
   display: block\9;
   /* IE 8 Hack */
+}
+
+@media only screen and (max-width: 600px) {
+  /* Base */
+  html {
+    width: auto;
+  }
+
+  /* Hide Placeholders for mobile */
+  .miller--placeholder {
+    display: none;
+  }
+
+  /* Width of column */
+  .miller--column--wrap {
+    position: relative;
+  }
+
+  .miller--column {
+    width: 100% !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+  }
+  .miller--column:focus {
+    outline: none;
+  }
+
+  /* Terms Selection */
+  .miller--terms--selection {
+    padding: 10px 10px;
+    border-bottom: 1px #b8bbbd solid;
+    overflow: hidden;
+    background: #eee;
+  }
+
+  /* Link Back */
+  .link--back {
+    background: #37BFEF;
+    color: #fff;
+    border-radius: 10%;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+
+  .miller--terms--selection {
+    display: block;
+  }
 }
