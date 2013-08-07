@@ -10,6 +10,7 @@
         
         // Access to jQuery and DOM versions of element
         base.$el = $(el);
+
         base.el = el;
 
         var KEYUP = 38,
@@ -239,15 +240,16 @@
         }
         
         // Run initializer
-        base.init();
-    };
-    
-    $.taxonomyBrowser.keys.defaultOptions = {
 
+        base.init();
+        
     };
+
+    /* Loop Through All Elements to Instantiate the plugin */
     
     $.fn.taxonomybrowser_keys = function(options){
-    		var elements = $.fn.taxonomyBrowser.elementCache;
+    		
+        var elements = $.fn.taxonomyBrowser.elementCache;
     		
 
     		$.each(elements, function(index, ele){

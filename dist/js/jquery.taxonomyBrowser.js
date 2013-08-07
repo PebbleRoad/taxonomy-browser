@@ -43,6 +43,13 @@
 
         base.el = el;
 
+
+        /**
+         * Add a Column Wrapper
+         */
+        
+        base.$wrap = $('<div class="miller--column--wrap" />').appendTo(base.$el);
+
         
         /**
          * Options
@@ -51,6 +58,11 @@
         base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
         
 
+        /**
+         * Parent Array
+         */
+        
+        base.parentArray = [];
 
         /*
         * Template
@@ -219,7 +231,7 @@
         */
 
 
-        base.appendTaxonomy = function(taxonomy, depth){
+        base.appendTaxonomy = function(taxonomy, depth, parent){
 
           /**
           * Construct Root Elements
@@ -238,15 +250,34 @@
               });
 
           /**
-           * Set Attributes for the new Div
+           * Get Parent Taxonomy Object
            */
+          
+
+          
+          if(depth > 0){
+
+            this.parentArray.splice(depth-1, 10);
+
+            this.parentArray.push({
+              name: base.getAttributes(parent, 'label'),
+              depth: depth
+            });
+
+          }else{
+
+            this.parentArray = [];
+
+          }
+          
 
           /**
            * Handlebars Compile
            */
 
           $column.html(base.template({
-            taxonomies: taxonomy
+            taxonomies: taxonomy,
+            parent: base.parentArray
           }));
 
 
@@ -267,7 +298,7 @@
            * Append 
            */          
           
-          if(depth < base.options.columns)  $column.appendTo(base.$el);
+          if(depth < base.options.columns)  $column.appendTo(base.$wrap);
 
           
         };
@@ -286,6 +317,27 @@
 
         }
 
+        /**
+         * Gets Object Attributes from the Taxonomy Array
+         * @param  {String} attr
+         * @param  {String} id
+         * @return {String} attribute value
+         */
+        base.getAttributes = function(id, attr){
+
+          var attrValue;
+          //console.log('id '+ id );
+          for(var i = 0; i< this.taxonomy.length; i++){            
+            //console.log(this.taxonomy[i][id]);
+            if(this.taxonomy[i]["id"] == id) attrValue = this.taxonomy[i][attr];
+          }
+
+          //console.log(attrValue);
+
+          return attrValue;
+
+        };
+
         /*
           Expose Remove Columns
          */
@@ -301,14 +353,19 @@
 
         base.clickEvents = function(){
 
-          base.$el.on('click', '.term', function(e){
+          /*
+          Click Events for Terms
+           */
+
+          base.$el.on('click', 'li', function(e){
 
             var $this = $(this),
-                children = base.getChildren(this.getAttribute('data-id')),
+                parent = this.getAttribute('data-id'),                
+                children = base.getChildren(parent),
                 depth = Number($this.closest(base.options.columnClass).data('depth')) + 1,
                 klass = $this.hasClass('active'),
                 url = $this.find('a').attr("href");
-                        
+            //console.log(children);
             if(children && children.length && !klass) {
               
               $this
@@ -316,7 +373,7 @@
                 .siblings()
                 .removeClass('active');                
 
-              base.appendTaxonomy(children, depth); 
+              base.appendTaxonomy(children, depth, parent); 
               
             }else{
               
@@ -324,6 +381,31 @@
               
             }
 
+
+            e.preventDefault();
+          });
+
+
+          /* 
+
+            Click Events for Back Button 
+
+          */
+         
+          base.$el.on('click', '.link--back', function(e){
+
+            var $currentColumn = $(this).closest(base.options.columnClass);
+                $previousColumn = $currentColumn.prev();
+            
+            /*
+              Remove Current Column
+             */
+            
+            $currentColumn.remove();
+
+            /* Reset Classes */
+
+            $previousColumn.find('li').removeClass('active');
 
             e.preventDefault();
           });
