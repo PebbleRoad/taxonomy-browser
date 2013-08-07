@@ -64,6 +64,10 @@ a {
   overflow: auto;
 }
 
+.js-focus {
+  outline: 1px #000 dotted;
+}
+
 /* List */
 .terms {
   list-style: none;
@@ -78,11 +82,15 @@ a {
 }
 .terms li {
   margin: 0;
-  padding: 15px 10px;
-  padding-right: 40px;
+  padding: 0;
   border-bottom: 1px #b8bbbd solid;
   cursor: pointer;
   position: relative;
+}
+.terms li > a {
+  display: block;
+  padding: 15px 10px;
+  padding-right: 40px;
 }
 .terms li:hover {
   background: #fefefe;

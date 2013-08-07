@@ -80,6 +80,9 @@ html{
 }
 
 
+.js-focus{
+  outline: 1px #000 dotted;
+}
 
 
 
@@ -96,12 +99,17 @@ html{
 	text-transform: capitalize;
 
 	li{
-		margin: 0;
-		padding: 15px 10px;
-		padding-right: 40px;
+		margin: 0;		
+    padding: 0;		
 		border-bottom: 1px #b8bbbd solid;
 		cursor: pointer;
 		position:relative;
+  }
+
+  li > a{
+    display: block;
+    padding: 15px 10px;
+    padding-right: 40px;
   }
   
   li:hover{
