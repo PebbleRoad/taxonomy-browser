@@ -1,14 +1,18 @@
 (function($){
+    
     if(!$.taxonomyBrowser){
         $.taxonomyBrowser = new Object();
     };
     
     $.taxonomyBrowser.keys = function(el, options){
+        
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
+
         var base = this;
         
         // Access to jQuery and DOM versions of element
+
         base.$el = $(el);
 
         base.el = el;
@@ -18,19 +22,24 @@
             KEYLEFT = 37,
             KEYRIGHT = 39;
         
+        
         // Add a reverse reference to the DOM object
 
         base.$el.data("taxonomyBrowser.keys", base);
 
-
         
         base.init = function(){
+            
             base.options = $.extend({},base.$el.data('taxonomyBrowser').options, options);
             
-            // Put your initialization code here
+            /*
+              Initialize once taxonomyBrowser Root column has been added
+             */
 
             base.$el.on('root_column_added', function(){
-            	base.KeyEvents.init();            
+            	
+              base.KeyEvents.init();            
+
             });
 
         };
@@ -52,20 +61,18 @@
              */
             
             var self = this;
-
-            this.columns = base.$el.find(base.options.columnClass);
+            
                         
             /*
               Add focus to the First Column              
              */                        
             
-            this.columns.eq(0).focus();	
+            base.$el.find(base.options.columnClass).eq(0).focus();	
 
            
             /**
              * KeyDown Event Handler
-             * @param  {[type]} e
-             * @return {[type]}
+             * @param  {[type]} event             
              */
             
             base.$el.keydown(function(event){
@@ -102,6 +109,7 @@
                   event.which == KEYRIGHT ){
 
                 event.preventDefault();
+              
               }
               
               
@@ -142,9 +150,10 @@
               Select the first item if nothing is selected
              */
             
-            this.$currentColumn =  this.$currentColumn? this.$currentColumn : this.columns.first();
-            
-
+            this.$currentColumn =   this.$currentColumn? 
+                                    this.$currentColumn : 
+                                    this.columns.last().first();
+                        
             switch(direction){
 
               case "right":
@@ -176,21 +185,21 @@
               Check if there are any active Links
              */
             
-            this.$term = this.$currentColumn.find('li'), 
+            var $term = this.$currentColumn.find('li');
 
-            this.$active = this.$term.filter('.active'),
+            var $active = $term.filter('.active');
             
-            this.$currentActive =   this.$active.length? 
-                                    this.$active.next().length? this.$active.next(): this.$term.eq(0)
-                                    : this.$term.eq(0);
+            this.$currentActive =   $active.length? 
+                                    $active.next().length? $active.next(): $term.eq(0)
+                                    : $term.eq(0);
 
             /* Direction Up */
                                                
             if(direction == 'up'){
 
-              this.$currentActive =   this.$active.length? 
-                                      this.$active.prev().length? this.$active.prev(): this.$term.last()
-                                      : this.$term.eq(0);
+              this.$currentActive =   $active.length? 
+                                      $active.prev().length? $active.prev(): $term.last()
+                                      : $term.eq(0);
             }
 
             /*
@@ -215,7 +224,7 @@
                 2. Remove the adjacent Column
                  */
                  
-                this.$term.removeClass('active');
+                $term.removeClass('active');
                 
                 this.$currentActive.addClass('active');
 
@@ -226,13 +235,14 @@
                 $.fn.taxonomyBrowser.removeColumns.call(base, this.$currentColumn.data('depth') + 1);
 
               }
-            }
 
-            /*
-            Add Focus to the Link: So the container scrolls
-             */
-            
-            this.$currentActive.find('a').focus();
+              /*
+                Add Focus to the Link: So the container scrolls
+              */
+
+              this.$currentActive.find('a').focus();
+
+            }
 
 
           }

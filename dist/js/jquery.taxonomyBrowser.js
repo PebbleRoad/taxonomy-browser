@@ -99,8 +99,14 @@
              */
 
             base.readjson().then(function(){
+
+              /*
+                Append Parent Taxonomy
+               */
                             
-              base.appendTaxonomy(base.root);
+              base.appendTaxonomy({
+                taxonomy: base.root                
+              });
 
               /*
                 Triggger
@@ -109,9 +115,27 @@
               base.$el.trigger('root_column_added');
 
 
+              /*
+                Register Click Events
+               */
+              
               base.clickEvents();
 
-              //base.KeyEvents.init();
+              
+              /*
+                Start Value: The ID of the parent
+              */
+          
+              if(base.options.start){
+                
+                base.$el
+                    .find(base.options.columnClass)
+                    .eq(0)
+                    .find('li[data-id="'+base.options.start+'"]')
+                    .trigger('click');            
+
+              }
+
 
             });
             
@@ -231,14 +255,14 @@
         */
 
 
-        base.appendTaxonomy = function(taxonomy, depth, parent){
+        base.appendTaxonomy = function(options){
 
           /**
           * Construct Root Elements
           * Add TabIndex to the Element so it receives focus
           */
           
-          var depth = depth || 0,
+          var depth = options.depth || 0,
               columnWidth = 100/base.options.columns,
               $column = $('<div />', {
                 'class': base.options.columnClass.replace('.',''),
@@ -260,7 +284,7 @@
             this.parentArray.splice(depth-1, 10);
 
             this.parentArray.push({
-              name: base.getAttributes(parent, 'label'),
+              name: base.getAttributes(options.parent, 'label'),
               depth: depth
             });
 
@@ -276,16 +300,10 @@
            */
 
           $column.html(base.template({
-            taxonomies: taxonomy,
+            taxonomies: options.taxonomy,
             parent: base.parentArray
           }));
 
-
-          /**
-           * Reusable currentDepth
-           */
-
-          this.currentDepth = depth;
 
 
           /**
@@ -298,7 +316,12 @@
            * Append 
            */          
           
-          if(depth < base.options.columns)  $column.appendTo(base.$wrap);
+          if(depth < base.options.columns)  {
+            
+            $column.appendTo(base.$wrap);
+
+          }
+
 
           
         };
@@ -326,13 +349,12 @@
         base.getAttributes = function(id, attr){
 
           var attrValue;
-          //console.log('id '+ id );
+          
           for(var i = 0; i< this.taxonomy.length; i++){            
-            //console.log(this.taxonomy[i][id]);
+            
             if(this.taxonomy[i]["id"] == id) attrValue = this.taxonomy[i][attr];
-          }
 
-          //console.log(attrValue);
+          }
 
           return attrValue;
 
@@ -365,7 +387,8 @@
                 depth = Number($this.closest(base.options.columnClass).data('depth')) + 1,
                 klass = $this.hasClass('active'),
                 url = $this.find('a').attr("href");
-            //console.log(children);
+            
+
             if(children && children.length && !klass) {
               
               $this
@@ -373,7 +396,11 @@
                 .siblings()
                 .removeClass('active');                
 
-              base.appendTaxonomy(children, depth, parent); 
+              base.appendTaxonomy({
+                taxonomy: children, 
+                depth: depth, 
+                parent: parent
+              }); 
               
             }else{
               
@@ -383,6 +410,8 @@
 
 
             e.preventDefault();
+
+
           });
 
 
@@ -450,7 +479,8 @@
         rootValue: null, 
         columnClass: '.miller--column', 
         columns: 3, 
-        columnHeight: 400 
+        columnHeight: 400,
+        start: '' /* ID or index of the Taxonomy Where you want to start */
     };
 
 
