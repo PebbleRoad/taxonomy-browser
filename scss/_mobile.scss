@@ -1,0 +1,53 @@
+/* Base */
+
+html{
+	width: auto;
+}
+
+/* Hide Placeholders for mobile */
+
+.miller--placeholder{
+	display: none;
+}
+
+/* Width of column */
+
+.miller--column--wrap{
+	position: relative;
+}
+
+.miller--column{
+	width: 100% !important;		
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #fff;
+
+	&:focus{
+		outline: none;
+	}
+}
+
+/* Terms Selection */
+
+.miller--terms--selection{
+	padding: 10px 10px;
+	border-bottom: 1px #b8bbbd solid;
+	overflow: hidden;
+	background: #eee;
+}
+
+/* Link Back */
+
+.link--back{
+	background: #37BFEF;
+	color: #fff;
+	border-radius:10%;
+	padding: 5px 10px;
+	margin-right: 10px;
+}
+
+
+.miller--terms--selection{
+  display: block;
+}

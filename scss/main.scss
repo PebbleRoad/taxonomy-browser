@@ -9,7 +9,7 @@ html{
   font-family:Arial, Helvetica;
   color:#818285;
   line-height:1.4;
-  width:80%;
+  width:90%;
   margin:0 auto;
 }
 
@@ -44,10 +44,11 @@ html{
   }
 }
 
+
 /* PlaceHolder Columns */
 
-.miller--placeholder{
-  position:relative;
+.miller--placeholder{  
+  display: block;
 }
 
 .miller--placeholder--column{
@@ -68,7 +69,15 @@ html{
   width:33.333%;
   position:relative;
   z-index: 1;
+  background: none;
 }
+
+/* Terms Selection */
+
+.miller--terms--selection{
+  display: none;
+}
+
 
 /* Terms Container */
 
@@ -83,10 +92,6 @@ html{
 .js-focus{
   outline: 1px #000 dotted;
 }
-
-
-
-
 
 
 
@@ -176,3 +181,12 @@ html{
   }
   
 }
+
+
+
+@media only screen and (max-width: 600px){
+
+  @import "mobile";
+
+}
+
