@@ -27,9 +27,9 @@
   				<li class="term {{#if childrenCount}}has-children{{/if}}" data-id="{{id}}">
   					<a href="{{url}}">
   					  <span class="title">{{label}}</span> 
-  					  <em class="icon icon-arrow"></em> <em class="icon icon-search" title="Search for {{label}}"></em>
-  					</a>  					
+  					  <em class="icon icon-arrow"></em> <em class="icon icon-search" title="Search for {{label}}"></em> 			
   					{{#if description}}<span class="description">{{description}}</span>{{/if}}
+  					</a>
   				</li>
   			{{/each}}
   		</ul>
@@ -41,6 +41,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="js/handlebars.js"></script>
 	<script src="js/jquery.taxonomyBrowser.js"></script>
+	<script src="js/jquery.taxonomyBrowser.keys.js"></script>
 	<script>
 		$(function(){
 			

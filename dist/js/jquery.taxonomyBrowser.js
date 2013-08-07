@@ -21,6 +21,13 @@
     */
     
     $.taxonomyBrowser = function(el, options){
+
+        /*
+          Push to Element Cache Function so it can be access by external libraries
+         */
+        
+        $.fn.taxonomyBrowser.elementCache.push(el);
+
         /* 
          * To avoid scope issues, use 'base' instead of 'this'
          * to reference this class from internal events and functions.
@@ -35,6 +42,7 @@
         base.$el = $(el);
 
         base.el = el;
+
         
         /**
          * Options
@@ -56,6 +64,9 @@
 
         base.$el.data("taxonomyBrowser", base);
 
+        
+
+        
         /**
         * Initializes the Plugin
         * @method Init
@@ -79,7 +90,16 @@
                             
               base.appendTaxonomy(base.root);
 
-              base.initEvents();
+              /*
+                Triggger
+              */
+            
+              base.$el.trigger('root_column_added');
+
+
+              base.clickEvents();
+
+              //base.KeyEvents.init();
 
             });
             
@@ -203,13 +223,15 @@
 
           /**
           * Construct Root Elements
+          * Add TabIndex to the Element so it receives focus
           */
           
           var depth = depth || 0,
               columnWidth = 100/base.options.columns,
               $column = $('<div />', {
                 'class': base.options.columnClass.replace('.',''),
-                'data-depth': depth
+                'data-depth': depth,
+                'tabindex': depth
               }).css({
                 'height': base.options.columnHeight,
                 'width': columnWidth + '%'
@@ -239,25 +261,45 @@
            * Remove Other Facets
            */
 
-          base.$el.find(base.options.columnClass).filter(function(){
-            return $(this).data('depth') > (depth-1)
-          }).remove();
+          base.removeColumns(depth);
 
           /**
            * Append 
            */          
           
-          if(depth < base.options.columns) $column.appendTo(base.$el);
+          if(depth < base.options.columns)  $column.appendTo(base.$el);
 
-
+          
         };
+
+        
+        /**
+         * Helper Function to remove Columns based on current depth
+         * @param  {Number} currentDepth
+         * @return {[type]}
+         */
+        base.removeColumns = function(currentDepth){
+          
+          this.$el.find(base.options.columnClass).filter(function(){
+            return $(this).data('depth') > (currentDepth-1)
+          }).remove();
+
+        }
+
+        /*
+          Expose Remove Columns
+         */
+        
+        $.fn.taxonomyBrowser.removeColumns = base.removeColumns;
+
+
 
         /**
         * Add events to the taxonomy browser
         * @method initEvents
         */
 
-        base.initEvents = function(){
+        base.clickEvents = function(){
 
           base.$el.on('click', '.term', function(e){
 
@@ -286,7 +328,9 @@
             e.preventDefault();
           });
 
-        }
+        };
+
+        
 
 
         /**
@@ -313,6 +357,7 @@
          */
 
         base.init();
+
     };
     
     
@@ -343,6 +388,12 @@
     $.fn.gettaxonomyBrowser = function(){
         this.data("taxonomyBrowser");
     };
+
+    /*
+      Element Cache
+     */
+    
+    $.fn.taxonomyBrowser.elementCache = [];
 
 
 
