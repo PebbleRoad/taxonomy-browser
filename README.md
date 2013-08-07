@@ -14,6 +14,12 @@ Facet File is located in /json/taxonomy.json
 2. Height of each column can be customized.
 3. Uses handlebars template for facet output. So fully customizable.
 
+### Planned Updates
+
+1. Keyboard Support : Done
+2. Mobile (Responsive): To do
+3. SKOS Support: [http://www.w3.org/2004/02/skos/](http://www.w3.org/2004/02/skos/)
+
 ### How to use
 
 1. Install Grunt
