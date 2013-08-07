@@ -36,7 +36,7 @@
               Initialize once taxonomyBrowser Root column has been added
              */
 
-            base.$el.on('root_column_added', function(){
+            base.$el.on('after:append:root', function(){
             	
               base.KeyEvents.init();            
 

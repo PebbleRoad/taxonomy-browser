@@ -1,6 +1,6 @@
 /**
 * Easily Browser through heirarchical list of taxonomies
-* @lastModified 6 August 2013 12:19AM
+* @lastModified 8 August 2013 12:19AM
 * @author Vinay@artminister.com
 * @url http://github.com/PebbleRoad/jquery-taxonomy-browser
 */
@@ -68,7 +68,7 @@
         * Template
         */
 
-        base.template = Handlebars.compile(document.getElementById('taxonomy_terms').innerHTML);
+        base.template = Handlebars.compile(document.getElementById(base.options.template).innerHTML);
         
         /* 
          * Add a reverse reference to the DOM object
@@ -112,7 +112,7 @@
                 Triggger
               */
             
-              base.$el.trigger('root_column_added');
+              base.$el.trigger('after:append:root');
 
 
               /*
@@ -271,7 +271,8 @@
               }).css({
                 'height': base.options.columnHeight,
                 'width': columnWidth + '%'
-              });
+              }),
+              taxonomy = options.taxonomy;
 
           /**
            * Get Parent Taxonomy Object
@@ -293,6 +294,17 @@
             this.parentArray = [];
 
           }
+
+          /**
+           * Trigger before:append
+           * taxonomy object can be modified here 
+           * $('.miller--columns').bind('before:append', function(event, taxonomy){
+           *    ......
+           *    return taxonomy; // Modified Taxonomy 
+           * })
+           */
+          
+          base.$el.trigger('before:append', [taxonomy]);
           
 
           /**
@@ -300,7 +312,7 @@
            */
 
           $column.html(base.template({
-            taxonomies: options.taxonomy,
+            taxonomies: taxonomy,
             parent: base.parentArray
           }));
 
@@ -314,11 +326,25 @@
 
           /**
            * Append 
-           */          
+           */
+          
+
           
           if(depth < base.options.columns)  {
             
             $column.appendTo(base.$wrap);
+
+
+            /**
+             * Trigger before:append
+             * taxonomy object can be modified here 
+             * $('.miller--columns').bind('after:append', function(event, taxonomy, depth){
+             *    ......
+             *    return taxonomy; // Modified Taxonomy 
+             * })
+             */
+
+            base.$el.trigger('after:append', [taxonomy, depth]);            
 
           }
 
@@ -480,7 +506,8 @@
         columnClass: '.miller--column', 
         columns: 3, 
         columnHeight: 400,
-        start: '' /* ID or index of the Taxonomy Where you want to start */
+        start: '' /* ID or index of the Taxonomy Where you want to start */,
+        template: 'taxonomy_terms'
     };
 
 
