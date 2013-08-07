@@ -97,6 +97,8 @@ a {
 }
 .terms .active, .terms .active:hover {
   background: #37BFEF;
+}
+.terms .active .description, .terms .active:hover .description {
   color: #fff;
 }
 .terms .title {
