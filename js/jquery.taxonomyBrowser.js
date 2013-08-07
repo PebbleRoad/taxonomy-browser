@@ -465,6 +465,23 @@
             e.preventDefault();
           });
 
+
+          /*
+            Click Events for Bread Crumbs for mobile
+           */
+          
+          base.$el.on('click', '.crumb', function(e){
+
+            base.$el
+              .find(base.options.columnClass)
+              .find('li')
+              .removeClass('active');
+
+            base.removeColumns(this.getAttribute('data-depth'));
+
+            e.preventDefault();
+          })
+
         };
 
         
