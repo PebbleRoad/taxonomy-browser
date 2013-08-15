@@ -7,7 +7,7 @@
 ;(function($, window, document){
 
     /**
-    * This is the description for my class.
+    * Miller Column jQuery plugin 
     *
     * @class taxonomybrowser
     * @constructor
@@ -108,11 +108,7 @@
                 taxonomy: base.root                
               });
 
-              /*
-                Triggger
-              */
-            
-              base.$el.trigger('after:append:root');
+              
 
 
               /*
@@ -120,6 +116,13 @@
                */
               
               base.clickEvents();
+
+
+              /*
+                Triggger
+              */
+            
+              base.$el.trigger('after:append:root');
 
               
               /*
@@ -201,7 +204,7 @@
 
                     
                     /**
-                    * Check if current taxonomy id is in parent attribute
+                    * Find children count of each taxonomy
                     */
 
                     for(var j =0; j < total; j++){
@@ -209,7 +212,7 @@
                     }
 
                     /**
-                    * Add a new attribute for childrenCount
+                    * Add a new attribute: childrenCount
                     */
 
                     current.childrenCount = count;
