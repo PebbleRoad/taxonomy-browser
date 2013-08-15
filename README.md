@@ -46,6 +46,8 @@ Facet File is located in /json/taxonomy.json
 
 ### Legal
 
-Copyright (c) 2013 [Pebbleroad](http://www.pebbleroad.com/)
+GPL License
+
+[![Attribution-ShareAlike](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/PebbleRoad/jquery-taxonomy-browser/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
