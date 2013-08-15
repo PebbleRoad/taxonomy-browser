@@ -9,7 +9,7 @@
 <body>
 	
 
-	<h3>Facets Browse Interface</h3>
+	<h3>Miller Columns</h3>
 	
 	<!-- Miller container -->
 	<div class="miller-container">				
@@ -25,9 +25,8 @@
 		<div class="miller--terms--container">
 			
 			{{#if parent}}
-				<div class="miller--terms--selection">
-					<a href="#" class="link--back" data-id={{parent}}>Back</a>
-					{{#each parent}} {{#if @index}} &raquo; {{/if}} <a href="#" class="crumb" data-depth="{{depth}}">{{name}}</a>{{/each}}					
+				<div class="miller--terms--selection">					
+					{{#each parent}} {{#if @index}} &raquo; {{/if}} <a href="#" class="crumb" data-depth="{{depth}}">{{name}}</a>{{/each}}
 				</div>
 			{{/if}}
 
