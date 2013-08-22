@@ -1,0 +1,158 @@
+/* Base */
+html {
+  font-family: Arial, Helvetica;
+  color: #818285;
+  line-height: 1.4;
+  width: 90%;
+  margin: 0 auto; }
+
+/* Box Sizing : IE 8 and above */
+* {
+  box-sizing: border-box; }
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #222; }
+
+/* Container */
+.miller-container {
+  position: relative; }
+  .miller-container:after {
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both; }
+
+/* PlaceHolder Columns */
+.miller--placeholder {
+  display: block; }
+
+.miller--placeholder--column {
+  position: absolute;
+  top: 0; }
+
+.miller--placeholder__background {
+  background: #f3f3f4;
+  margin: 0 10px;
+  /* Column Width */
+  height: 100%; }
+
+/* Columns */
+.miller--column {
+  float: left;
+  width: 33.333%;
+  position: relative;
+  z-index: 1;
+  background: none; }
+
+/* Terms Selection */
+.miller--terms--selection {
+  display: none; }
+
+/* Terms Container */
+.miller--terms--container {
+  border: 1px #ccc solid;
+  height: 100%;
+  margin: 0 10px;
+  /* Column Width */
+  overflow: auto; }
+
+.js-focus {
+  outline: 1px #000 dotted; }
+
+/* List */
+.terms {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  /* Active Taxonomy */
+  /* Title */
+  /* Parent Taxonomy */
+  /* Icons */
+  /* Active Taxonomy */ }
+  .terms li {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px #b8bbbd solid;
+    cursor: pointer;
+    position: relative; }
+  .terms li > a {
+    display: block;
+    padding: 15px 10px;
+    padding-right: 40px; }
+  .terms li:hover {
+    background: #fefefe; }
+  .terms .active, .terms .active:hover {
+    background: #37BFEF; }
+    .terms .active .description, .terms .active:hover .description {
+      color: #fff; }
+  .terms .title {
+    display: block; }
+  .terms .has-children .title {
+    font-weight: bold; }
+  .terms .icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 50%;
+    margin-top: -10px;
+    transition: all 0.2s ease-in; }
+  .terms .icon-arrow {
+    background: url(../images/icons.png) 0 -20px no-repeat; }
+  .terms .icon-search {
+    background: url(../images/icons.png) -20px 0 no-repeat;
+    opacity: 0;
+    display: none\9;
+    /* IE 8 Hack */ }
+  .terms .active .icon-arrow {
+    opacity: 0;
+    display: none\9;
+    /* IE 8 Hack */ }
+  .terms .active .icon-search {
+    opacity: 1;
+    display: block\9;
+    /* IE 8 Hack */ }
+
+@media only screen and (max-width: 600px) {
+  /* Base */
+  html {
+    width: auto; }
+
+  /* Hide Placeholders for mobile */
+  .miller--placeholder {
+    display: none; }
+
+  /* Width of column */
+  .miller--column--wrap {
+    position: relative; }
+
+  .miller--column {
+    width: 100% !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff; }
+    .miller--column:focus {
+      outline: none; }
+
+  /* Terms Selection */
+  .miller--terms--selection {
+    padding: 10px 10px;
+    border-bottom: 1px #b8bbbd solid;
+    overflow: hidden;
+    background: #eee; }
+
+  /* Link Back */
+  .link--back {
+    background: #37BFEF;
+    color: #fff;
+    border-radius: 10%;
+    padding: 5px 10px;
+    margin-right: 10px; }
+
+  .miller--terms--selection {
+    display: block; } }
