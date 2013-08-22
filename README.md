@@ -2,11 +2,11 @@
 
 ### Demo
 
-[http://pebbleroad.github.io/jquery-taxonomy-browser/dist/](http://pebbleroad.github.io/jquery-taxonomy-browser/dist/)
+[http://pebbleroad.github.io/jquery-taxonomy-browser/build/](http://pebbleroad.github.io/jquery-taxonomy-browser/build/)
 
 Facet File is located in /json/taxonomy.json
 
-[![Screenshot](http://pebbleroad.github.io/jquery-taxonomy-browser/img/screenshot.jpg)](http://pebbleroad.github.io/jquery-taxonomy-browser/dist/)
+[![Screenshot](http://pebbleroad.github.io/jquery-taxonomy-browser/img/screenshot.jpg)](http://pebbleroad.github.io/jquery-taxonomy-browser/build/)
 
 ### Available Plugin options
 
