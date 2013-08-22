@@ -19,6 +19,7 @@
     *   @param {Number} [options.columns] Maximum number of columns
     *   @param {Number} [options.columnHeight] Height of the columns
     */
+       
     
     $.taxonomyBrowser = function(el, options){
 
@@ -55,7 +56,7 @@
          * Options
          */
         
-        base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options);
+        base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options, base.$el.data());        
         
 
         /**
@@ -98,51 +99,63 @@
              * 3. Add Click Events
              */
 
-            base.readjson().then(function(){
+            /**
+             * JSON Source             
+             */
+            
+            if(base.options.source == 'json'){
+              
+              $.ajax({
+                url: base.options.json,
+                dataType: 'text',
+                success: function(tax){
 
-              /*
-                Append Parent Taxonomy
-               */
-                            
-              base.appendTaxonomy({
-                taxonomy: base.root                
+                  base.processJSON(tax)
+
+                }
+
               });
 
-              
+            /**
+             * Html Source
+             */
+            
+            }
+            else{
 
-
-              /*
-                Register Click Events
+              /**
+               * Convert Data to the Taxonomy Object
                */
               
-              base.clickEvents();
+              base.$ul = base.$el.find('ul').hide();
 
+              var taxArray = [];
 
-              /*
-                Triggger
-              */
-            
-              base.$el.trigger('after:append:root');
-
-              
-              /*
-                Start Value: The ID of the parent
-              */
-          
-              if(base.options.start){
+              base.$ul.find('li').each(function(){
                 
-                base.$el
-                    .find(base.options.columnClass)
-                    .eq(0)
-                    .find('li[data-id="'+base.options.start+'"]')
-                    .trigger('click');            
+                var $this = $(this),
+                    $child = $this.children('a'),
+                    label = $child.text(),
+                    id = $child.sanitize(),
+                    parent = $this.closest('ul').prev('a').sanitize() || null;
 
-              }
+                taxArray.push({
+                  label: label,
+                  id: id,
+                  slug: id,
+                  parent: parent                  
+                });
 
 
-            });
+              });
+
+              base.processJSON(JSON.stringify(taxArray));
+              
+
+            }
             
         };
+
         
         /**
          * Add Placeholder Columns based on column number, class and height
@@ -170,84 +183,101 @@
             
         };
         
-
+        
         /**
-        * Convert JSON to an key:value array
-        * @method readJSON
-        */
-
-        base.readjson = function(){
-
-            var root = [],
-                taxonomy = {},                
-                total,
-                deferred = $.Deferred(),
-                self = this;            
-
-            /**
-            * Request the JSON file
-            */
-
-            $.getJSON(base.options.json)
-                .then(function(tax){
-
-                  taxonomy = tax;
-                   
-                  total = taxonomy.length;
-
-                  for(var i =0; i < total; i++){
-
-                    if(taxonomy[i].parent == base.options.rootValue) root.push(taxonomy[i]);                    
-
-                    var current = taxonomy[i],
-                        count = 0;
-
-                    
-                    /**
-                    * Find children count of each taxonomy
-                    */
-
-                    for(var j =0; j < total; j++){
-                      if(current.id == taxonomy[j].parent) count++
-                    }
-
-                    /**
-                    * Add a new attribute: childrenCount
-                    */
-
-                    current.childrenCount = count;
-                  }
-                  
-
-                  /**
-                  * Root Taxonomy Terms
-                  */
-                  
-                  self.root = root;
+         * Process JSON Object
+         * @param  {[type]} tax [description]
+         * @return {[type]}     [description]
+         */
+        base.processJSON = function(tax){
 
 
-                  /**
-                  * Parse Taxonomy terms with children count
-                  */
+          var root = [],
+              taxonomy = {},                
+              total,              
+              self = this;                      
+            
+          taxonomy = JSON.parse(tax);          
+           
+          total = taxonomy.length;
 
-                  self.taxonomy = taxonomy;
+          for(var i =0; i < total; i++){
 
-                  
-                  /**
-                  * Pass it back to then()
-                  */
+            if(taxonomy[i].parent == base.options.rootValue) root.push(taxonomy[i]);                    
 
-                  deferred.resolve();
-                   
+            var current = taxonomy[i],
+                count = 0;
 
-            });
             
             /**
-            * Return deferred promise
+            * Find children count of each taxonomy
             */
 
-            return deferred.promise();
+            for(var j =0; j < total; j++){
+              if(current.id == taxonomy[j].parent) count++
+            }
 
+            /**
+            * Add a new attribute: childrenCount
+            */
+
+            current.childrenCount = count;
+          }
+          
+
+          /**
+          * Root Taxonomy Terms
+          */
+          
+          self.root = root;
+
+
+          /**
+          * Parse Taxonomy terms with children count
+          */
+
+          self.taxonomy = taxonomy;
+
+
+          /*
+            Append Parent Taxonomy
+           */
+          
+          base.appendTaxonomy({
+            taxonomy: base.root                
+          });
+
+
+
+
+          /*
+            Register Click Events
+           */
+
+          base.clickEvents();
+
+
+          /*
+            Triggger
+          */
+
+          base.$el.trigger('after:append:root', [base.$el]);
+
+
+          /*
+            Start Value: The ID of the parent
+          */
+
+          if(base.options.start){
+            
+            base.$el
+                .find(base.options.columnClass)
+                .eq(0)
+                .find('li[data-id="'+base.options.start+'"]')
+                .trigger('click');            
+
+          }
+                  
         };
 
         /**
@@ -466,6 +496,7 @@
             $previousColumn.find('li').removeClass('active');
 
             e.preventDefault();
+
           });
 
 
@@ -520,7 +551,8 @@
     
     // Default Options
 
-    $.taxonomyBrowser.defaultOptions = {
+    $.taxonomyBrowser.defaultOptions = {        
+        source: 'json',
         json: 'json/taxonomy.json', 
         rootValue: null, 
         columnClass: '.miller--column', 
@@ -530,6 +562,11 @@
         template: 'taxonomy_terms'
     };
 
+    $.fn.sanitize = function(){
+      
+      return $(this).text().replace(/[^a-z0-9]+/ig, "-").toLowerCase();
+
+    };
 
     /**
     * jQuery Plugin method

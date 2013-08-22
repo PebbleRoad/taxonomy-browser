@@ -104,7 +104,7 @@ module.exports = function(grunt) {
   // Default task
   
   grunt.registerTask('default', ['copy']);
-  grunt.registerTask('dev', ['connect', 'watch']);
+  grunt.registerTask('server', ['connect', 'watch']);
   grunt.registerTask('build', ['copy']);
   grunt.registerTask('docs', ['yuidoc']);
   

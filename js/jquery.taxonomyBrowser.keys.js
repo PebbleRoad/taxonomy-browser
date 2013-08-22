@@ -36,11 +36,8 @@
               Initialize once taxonomyBrowser Root column has been added
              */
 
-            base.$el.on('after:append:root', function(){
-            	
-              base.KeyEvents.init();            
-
-            });
+            
+            base.KeyEvents.init();            
 
         };
         
@@ -67,7 +64,13 @@
               Add focus to the First Column              
              */                        
             
-            base.$el.find(base.options.columnClass).eq(0).focus();	
+            //base.$el.find(base.options.columnClass).eq(0).focus();
+            
+            
+            $($.fn.taxonomyBrowser.elementCache[0])
+              .find(base.options.columnClass)
+              .eq(0)
+              .focus();
 
            
             /**
@@ -75,7 +78,7 @@
              * @param  {[type]} event             
              */
             
-            base.$el.keydown(function(event){
+            base.$el.on('keydown', function(event){
 
               self.columns = base.$el.find(base.options.columnClass);
 
@@ -259,12 +262,12 @@
     
     $.fn.taxonomybrowser_keys = function(options){
     		
-        var elements = $.fn.taxonomyBrowser.elementCache;
-    		
+        var elements = $.fn.taxonomyBrowser.elementCache;            		
 
     		$.each(elements, function(index, ele){
     			(new $.taxonomyBrowser.keys(ele, options));
-    		})
+    		});
+
     };
 
 
