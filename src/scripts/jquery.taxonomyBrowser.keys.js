@@ -64,11 +64,11 @@
               Add focus to the First Column              
              */                        
             
-            //base.$el.find(base.options.columnClass).eq(0).focus();
+            //base.$el.find(base.options.columnclass).eq(0).focus();
             
             
             $($.fn.taxonomyBrowser.elementCache[0])
-              .find(base.options.columnClass)
+              .find(base.options.columnclass)
               .eq(0)
               .focus();
 
@@ -80,7 +80,7 @@
             
             base.$el.on('keydown', function(event){
 
-              self.columns = base.$el.find(base.options.columnClass);
+              self.columns = base.$el.find(base.options.columnclass);
 
               switch(event.which){
                 case KEYUP:
@@ -167,7 +167,7 @@
 
 
               case "left":
-                this.$currentColumn = this.$currentColumn.prev(base.options.columnClass).length? 
+                this.$currentColumn = this.$currentColumn.prev(base.options.columnclass).length? 
                                     this.$currentColumn.prev(): 
                                     this.columns.first();
                 break;
