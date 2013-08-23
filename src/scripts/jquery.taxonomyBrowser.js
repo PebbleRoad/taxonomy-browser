@@ -43,7 +43,7 @@
         base.$el = $(el);
 
         base.el = el;
-
+       
 
         /**
          * Add a Column Wrapper
@@ -58,6 +58,14 @@
         
         base.options = $.extend({},$.taxonomyBrowser.defaultOptions, options, base.$el.data());        
         
+         /**
+         * Add a min-height to container
+         */
+        
+        base.$el.css({
+          minHeight: base.options.columnheight
+        });
+
 
         /**
          * Parent Array
