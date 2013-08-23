@@ -14,10 +14,10 @@
     * @param el {Object} The Container element
     * @param {Object} [options] Default Options for Taxonomy Browser
     *   @param {String} [options.json] JSON File with the taxonomy structure || Required Properties: id, label, url, parent
-    *   @param {String} [options.rootValue] Top parents have the attribute parent set to 'null'
-    *   @param {String} [options.columnClass] Class name of generated column
+    *   @param {String} [options.rootvalue] Top parents have the attribute parent set to 'null'
+    *   @param {String} [options.columnclass] Class name of generated column
     *   @param {Number} [options.columns] Maximum number of columns
-    *   @param {Number} [options.columnHeight] Height of the columns
+    *   @param {Number} [options.columnheight] Height of the columns
     */
        
     
@@ -173,7 +173,7 @@
                 $('<div/>', {
                     'class': 'miller--placeholder--column'                    
                 }).css({
-                    'height': base.options.columnHeight,
+                    'height': base.options.columnheight,
                     'width': columnWidth + '%',
                     'left': i * columnWidth + '%'
                 }).html('<div class="miller--placeholder__background" />').appendTo($container);
@@ -203,7 +203,7 @@
 
           for(var i =0; i < total; i++){
 
-            if(taxonomy[i].parent == base.options.rootValue) root.push(taxonomy[i]);                    
+            if(taxonomy[i].parent == base.options.rootvalue) root.push(taxonomy[i]);                    
 
             var current = taxonomy[i],
                 count = 0;
@@ -271,7 +271,7 @@
           if(base.options.start){
             
             base.$el
-                .find(base.options.columnClass)
+                .find(base.options.columnclass)
                 .eq(0)
                 .find('li[data-id="'+base.options.start+'"]')
                 .trigger('click');            
@@ -298,11 +298,11 @@
           var depth = options.depth || 0,
               columnWidth = 100/base.options.columns,
               $column = $('<div />', {
-                'class': base.options.columnClass.replace('.',''),
+                'class': base.options.columnclass.replace('.',''),
                 'data-depth': depth,
                 'tabindex': depth
               }).css({
-                'height': base.options.columnHeight,
+                'height': base.options.columnheight,
                 'width': columnWidth + '%'
               }),
               taxonomy = options.taxonomy;
@@ -393,7 +393,7 @@
          */
         base.removeColumns = function(currentDepth){
           
-          this.$el.find(base.options.columnClass).filter(function(){
+          this.$el.find(base.options.columnclass).filter(function(){
             return $(this).data('depth') > (currentDepth-1)
           }).remove();
 
@@ -443,7 +443,7 @@
             var $this = $(this),
                 parent = this.getAttribute('data-id'),                
                 children = base.getChildren(parent),
-                depth = Number($this.closest(base.options.columnClass).data('depth')) + 1,
+                depth = Number($this.closest(base.options.columnclass).data('depth')) + 1,
                 klass = $this.hasClass('active'),
                 url = $this.find('a').attr("href");
             
@@ -482,7 +482,7 @@
          
           base.$el.on('click', '.link--back', function(e){
 
-            var $currentColumn = $(this).closest(base.options.columnClass);
+            var $currentColumn = $(this).closest(base.options.columnclass);
                 $previousColumn = $currentColumn.prev();
             
             /*
@@ -507,7 +507,7 @@
           base.$el.on('click', '.crumb', function(e){
 
             base.$el
-              .find(base.options.columnClass)
+              .find(base.options.columnclass)
               .find('li')
               .removeClass('active');
 
@@ -554,10 +554,10 @@
     $.taxonomyBrowser.defaultOptions = {        
         source: 'json',
         json: 'json/taxonomy.json', 
-        rootValue: null, 
-        columnClass: '.miller--column', 
+        rootvalue: null, 
+        columnclass: '.miller--column', 
         columns: 3, 
-        columnHeight: 400,
+        columnheight: 400,
         start: '' /* ID or index of the Taxonomy Where you want to start */,
         template: 'taxonomy_terms'
     };
@@ -595,288 +595,3 @@
 
     
 })(jQuery, window, document, undefined);
-
-(function($){
-    
-    if(!$.taxonomyBrowser){
-        $.taxonomyBrowser = new Object();
-    };
-    
-    $.taxonomyBrowser.keys = function(el, options){
-        
-        // To avoid scope issues, use 'base' instead of 'this'
-        // to reference this class from internal events and functions.
-
-        var base = this;
-        
-        // Access to jQuery and DOM versions of element
-
-        base.$el = $(el);
-
-        base.el = el;
-
-        var KEYUP = 38,
-            KEYDOWN = 40,
-            KEYLEFT = 37,
-            KEYRIGHT = 39;
-        
-        
-        // Add a reverse reference to the DOM object
-
-        base.$el.data("taxonomyBrowser.keys", base);
-
-        
-        base.init = function(){
-            
-            base.options = $.extend({},base.$el.data('taxonomyBrowser').options, options);
-            
-            /*
-              Initialize once taxonomyBrowser Root column has been added
-             */
-
-            
-            base.KeyEvents.init();            
-
-        };
-        
-        
-
-
-        /**
-        * Add events to the taxonomy browser
-        * @method initKeyEvents
-        */
-       
-        base.KeyEvents = {
-
-          init: function(){
-
-            /*
-              Reverse Lookup
-             */
-            
-            var self = this;
-            
-                        
-            /*
-              Add focus to the First Column              
-             */                        
-            
-            //base.$el.find(base.options.columnClass).eq(0).focus();
-            
-            
-            $($.fn.taxonomyBrowser.elementCache[0])
-              .find(base.options.columnClass)
-              .eq(0)
-              .focus();
-
-           
-            /**
-             * KeyDown Event Handler
-             * @param  {[type]} event             
-             */
-            
-            base.$el.on('keydown', function(event){
-
-              self.columns = base.$el.find(base.options.columnClass);
-
-              switch(event.which){
-                case KEYUP:
-                  self.moveUp.apply(self, event);
-                  break;
-
-                case KEYRIGHT:
-                  self.moveRight.apply(self);
-                  break;
-
-                case KEYDOWN:
-                  self.moveDown.apply(self);  
-                  break;
-
-                case KEYLEFT:
-                  self.moveLeft.apply(self);    
-                  break;
-
-              };
-
-
-              /*
-              Prevent Default Browser Actions
-               */
-              
-              if( event.which == KEYUP ||
-                  event.which == KEYDOWN ||
-                  event.which == KEYLEFT ||
-                  event.which == KEYRIGHT ){
-
-                event.preventDefault();
-              
-              }
-              
-              
-            });
-
-          },
-
-          moveUp: function(){            
-
-            this.move('up');
-
-          },
-
-          moveDown: function(){
-
-            
-            this.move('down');
-
-
-          },
-
-          moveRight: function(){
-
-            this.move('right');
-            
-          },
-
-          moveLeft: function(){
-
-            this.move('left');
-            
-          },
-
-          move: function(direction){
-
-
-            /*
-              Select the first item if nothing is selected
-             */
-            
-            this.$currentColumn =   this.$currentColumn? 
-                                    this.$currentColumn : 
-                                    this.columns.last().first();
-                        
-            switch(direction){
-
-              case "right":
-                this.$currentColumn = this.$currentColumn.next().length? 
-                                    this.$currentColumn.next(): 
-                                    this.columns.last();
-                break;
-
-
-              case "left":
-                this.$currentColumn = this.$currentColumn.prev(base.options.columnClass).length? 
-                                    this.$currentColumn.prev(): 
-                                    this.columns.first();
-                break;
-
-            }
-           
-
-            /*
-              Add Focus Class to the Current Column
-             */
-            
-            this.columns.removeClass('js-focus');
-
-            this.$currentColumn.addClass('js-focus');
-
-                
-            /*
-              Check if there are any active Links
-             */
-            
-            var $term = this.$currentColumn.find('li');
-
-            var $active = $term.filter('.active');
-            
-            this.$currentActive =   $active.length? 
-                                    $active.next().length? $active.next(): $term.eq(0)
-                                    : $term.eq(0);
-
-            /* Direction Up */
-                                               
-            if(direction == 'up'){
-
-              this.$currentActive =   $active.length? 
-                                      $active.prev().length? $active.prev(): $term.last()
-                                      : $term.eq(0);
-            }
-
-            /*
-              If the next active list has children: trigger click
-             */
-            
-            if(direction != 'left'){
-
-              if(this.$currentActive.hasClass('has-children')){
-                
-                /*
-                Has Children
-                 */
-                
-                if(!this.$currentActive.hasClass('active')) this.$currentActive.trigger('click');  
-
-              }else{
-
-                /*
-                No Children: 
-                1. Add Active Class
-                2. Remove the adjacent Column
-                 */
-                 
-                $term.removeClass('active');
-                
-                this.$currentActive.addClass('active');
-
-                /*
-                Remove Adjacent Column if the item has no Children
-                 */
-
-                $.fn.taxonomyBrowser.removeColumns.call(base, this.$currentColumn.data('depth') + 1);
-
-              }
-
-              /*
-                Add Focus to the Link: So the container scrolls
-              */
-
-              this.$currentActive.find('a').focus();
-
-            }
-
-
-          }
-
-        }
-        
-        // Run initializer
-
-        base.init();
-        
-    };
-
-    /* Loop Through All Elements to Instantiate the plugin */
-    
-    $.fn.taxonomybrowser_keys = function(options){
-    		
-        var elements = $.fn.taxonomyBrowser.elementCache;            		
-
-    		$.each(elements, function(index, ele){
-    			(new $.taxonomyBrowser.keys(ele, options));
-    		});
-
-    };
-
-
-    
-    // Initialize
-
-    $(window).load(function(){
-
-    	$(document).taxonomybrowser_keys();
-
-    });
-    
-    
-})(jQuery);
