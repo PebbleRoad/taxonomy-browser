@@ -93,6 +93,8 @@ a {
     display: block; }
   .terms .has-children .title {
     font-weight: bold; }
+  .terms .has-children .icon-arrow {
+    display: block; }
   .terms .icon {
     position: absolute;
     width: 20px;
@@ -102,7 +104,8 @@ a {
     margin-top: -10px;
     transition: all 0.2s ease-in; }
   .terms .icon-arrow {
-    background: url(../images/icons.png) 0 -20px no-repeat; }
+    background: url(../images/icons.png) 0 -20px no-repeat;
+    display: none; }
   .terms .icon-search {
     background: url(../images/icons.png) -20px 0 no-repeat;
     opacity: 0;

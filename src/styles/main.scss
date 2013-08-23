@@ -143,6 +143,9 @@ html{
   	.title{
   		font-weight: bold;
   	}
+    .icon-arrow{
+      display: block;
+    }
   }
   
   
@@ -160,6 +163,7 @@ html{
   
   .icon-arrow{
     background:url(../images/icons.png) 0 -20px no-repeat;
+    display: none;
   }
   
   .icon-search{
