@@ -1,53 +1,204 @@
-## Facet Browse Interface (aka Miller Columns)
+## Faceted Taxonomy Browser Interface
 
 ### Demo
 
 [http://pebbleroad.github.io/jquery-taxonomy-browser/build/](http://pebbleroad.github.io/jquery-taxonomy-browser/build/)
 
-Facet File is located in /json/taxonomy.json
 
-[![Screenshot](http://pebbleroad.github.io/jquery-taxonomy-browser/img/screenshot.jpg)](http://pebbleroad.github.io/jquery-taxonomy-browser/build/)
+## What it is
+The jquery faceted taxonomy browser is a simple and intuitive design pattern for browsing hierarchical facets. It is based on a concept  called ‘Miller Columns’. If you use the Mac OSX Finder application you can see this feature in action.
 
-### Available Plugin options
+## Why use it
+It is becoming increasingly common to use a faceted taxonomy in organisations to manage large volumes of information. However, the facets and their categories can be quite wide and deep. This poses a challenge, especially to new staff, on learning the vocabulary quickly. 
 
-1. Number of columns can be customized.
-2. Height of each column can be customized.
-3. Uses handlebars template for facet output. So fully customizable.
+Alternate approaches to displaying the vocabulary, such as simple hierarchies, don't aid quick browsing (require using the back button) or are clunky (require scrolling). 
 
-### Planned Updates
+The taxonomy browser solves these problems by 
 
-1. Keyboard Support : *Done*
-2. Mobile (Responsive): *Done*
-3. SKOS Support: [http://www.w3.org/2004/02/skos/](http://www.w3.org/2004/02/skos/)
+* being visible at all times (no page scrolling)
+* allowing quick browsing—going back-and-forth is easy
 
-### How to use
+## How to use it
 
-1. Install Grunt
+You can activate the plugin in two ways: 
 
-        npm install -g grunt-cli
-    
-2. Install node module
-    
-        npm install
-
-3. Run grunt to launch server at http://localhost:8000
-
-        grunt dev
-        
-4. To generate documentation run
-
-        grunt docs
+### 1. Add your taxonomy template before the closing body tag
 
 
-### Documentation
+	<script type="text/x-handlebars-template" id="taxonomy_terms">
+		
+		<div class="miller--terms--container">
+			
+			{{#if parent}}
+				<div class="miller--terms--selection">					
+					{{#each parent}} {{#if @index}} &raquo; {{/if}} 
+					<a href="#" class="crumb" data-depth="{{depth}}">{{name}}</a>
+					{{/each}}
+				</div>
+			{{/if}}
 
-[http://pebbleroad.github.io/jquery-taxonomy-browser/docs/](http://pebbleroad.github.io/jquery-taxonomy-browser/docs/)
+			<ul class="terms">
+				{{#each taxonomies}}
+					<li class="term {{#if childrenCount}}has-children{{/if}}" data-id="{{id}}">
+						<a href="{{url}}">
+						  <span class="title">{{label}}</span> 
+						  <em class="icon icon-arrow"></em> <em class="icon icon-search" title="Search for {{label}}"></em> 			
+						{{#if description}}<span class="description">{{description}}</span>{{/if}}
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+			
+		</div>	
+		
+	</script>	
 
 
-### Legal
+### 2. Data Source (html or JSON)
 
-Creative Commons (Attribution-ShareAlike 3.0)
+#### If you are using HTML lists
 
-[![Attribution-ShareAlike](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/PebbleRoad/jquery-taxonomy-browser/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+	<!-- Miller container -->
+	<div class="miller-container" data-source="html">				
+		
+		<ul>
+			<li>
+				<a href="http://url.to/taxonomy/item">Parent 1</a>				
+				<ul>
+					<li><a href="#">Children - 1</a></li>
+					<li><a href="#">Children - 2</a></li>
+					<li><a href="#">Children - 3</a></li>
+					<li><a href="#">Children - 4</a></li>
+					<li>
+						<a href="#">Children 5</a>
+						<ul>
+							<li><a href="#">Children 51</a></li>
+							<li><a href="#">Children 52</a></li>
+							<li><a href="#">Children 53</a></li>
+							<li><a href="#">Children 54</a></li>
+							<li><a href="#">Children 55</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://url.to/taxonomy/item">Parent 2</a>				
+				<ul>
+					<li><a href="#">Children - 12</a></li>
+					<li><a href="#">Children - 22</a></li>
+					<li><a href="#">Children - 32</a></li>
+					<li><a href="#">Children - 42</a></li>
+					<li>
+						<a href="#">Children 520</a>
+						<ul>
+							<li><a href="#">Children 521</a></li>
+							<li><a href="#">Children 522</a></li>
+							<li><a href="#">Children 523</a></li>
+							<li><a href="#">Children 524</a></li>
+							<li><a href="#">Children 525</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+
+
+
+#### If you are using json data
+
+
+	[
+	    {
+	        "id": "documenttype",
+	        "label": "Access Control",
+	        "description": "Access Control for files",
+	        "url": "url",
+	        "slug": "category-slug",
+	        "parent": null
+	    },
+	    {
+	        "id": "classified",
+	        "label": "Classiﬁed",
+	        "description": "Classified information only",
+	        "url": "#",
+	        "slug": "category-slug",
+	        "parent": "documenttype"
+	    },
+	    {
+	        "id": "public",
+	        "label": "Public",
+	        "description": "Classified information only",
+	        "url": "#",
+	        "slug": "category-slug",
+	        "parent": "documenttype"
+	    },
+	    {
+	        "id": "confidential",
+	        "label": "Conﬁdential",
+	        "description": "Confidential information only",
+	        "url": "#",
+	        "slug": "category-slug",
+	        "parent": "classified"
+	    },
+	    {
+	        "id": "secret",
+	        "label": "Secret",
+	        "description": "Secret information only",
+	        "url": "#",
+	        "slug": "category-slug",
+	        "parent": "classified"
+	    }
+	]
+	
+
+Your html for json 'source' will look like:
+
+
+	<!-- Miller container -->
+	<div class="miller-container" data-source="json" data-json='json/taxonomy.json'>				
+			
+	</div>
+	<!-- / Miller container -->
+
+
+
+### 3. **Initializing the plugin**
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="scripts/handlebars.js"></script>
+
+	<script src="scripts/jquery.taxonomyBrowser.js"></script>
+
+	<!-- Optional for keyboard support -->
+	<script src="scripts/jquery.taxonomyBrowser.keys.js"></script>
+
+	<script>
+		$(function(){
+			
+			$('.miller-container').taxonomyBrowser();
+			
+		});
+	</script>
+
+
+#### Available Plugin Options
+
+
+
+
+	$.taxonomyBrowser.defaultOptions = {        
+			source       : 'json', 					/* Data Source: html | json */
+			json         : 'json/taxonomy.json', 	/* JSON url */
+			rootvalue    : null, 					/* Root Taxonomies have a parent value of null */
+			columnclass  : '.miller--column', 		/* Class of each miller column */
+			columns      : 3, 						/* Number of columns */
+			columnheight : 400, 					/* Height of each column */
+			start        : '', 						/* ID of the starting taxonomy item. Default : null */
+			template     : 'taxonomy_terms'			/* Handlebars template id */
+	};
+
+	You can even add data-*option* attributes to your html	
