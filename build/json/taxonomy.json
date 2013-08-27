@@ -3,7 +3,7 @@
         "id": "documenttype",
         "label": "Access Control",
         "description": "Access Control for files",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -11,7 +11,7 @@
         "id": "classified",
         "label": "Classiﬁed",
         "description": "Classified information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "documenttype"
     },
@@ -19,7 +19,7 @@
         "id": "public",
         "label": "Public",
         "description": "Classified information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "documenttype"
     },
@@ -27,7 +27,7 @@
         "id": "confidential",
         "label": "Conﬁdential",
         "description": "Confidential information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "classified"
     },
@@ -35,7 +35,7 @@
         "id": "secret",
         "label": "Secret",
         "description": "Secret information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "classified"
     },
@@ -43,7 +43,7 @@
         "id": "inner-secret",
         "label": "Inner Secret",
         "description": "Secret information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "secret"
     },
@@ -51,7 +51,7 @@
         "id": "top-secret",
         "label": "Top Secret",
         "description": "Top Secret information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "classified"
     },
@@ -59,7 +59,7 @@
         "id": "sensitive",
         "label": "Sensitive But Unclassiﬁed",
         "description": "Sensitive But Unclassiﬁed information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "documenttype"
     },
@@ -67,7 +67,7 @@
         "id": "export",
         "label": "Export Controlled",
         "description": "Sensitive But Unclassiﬁed information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -75,7 +75,7 @@
         "id": "foia",
         "label": "FOIA-exempt",
         "description": "FOIA-exempt information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -83,7 +83,7 @@
         "id": "nasa-designated",
         "label": "NASA Designated",
         "description": "NASA Designated information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -91,7 +91,7 @@
         "id": "non-nasa-designated",
         "label": "Non-NASA Proprietary",
         "description": "Non-NASA Proprietary information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -99,7 +99,7 @@
         "id": "pip",
         "label": "Patents and Intellectual Property",
         "description": "Patents and Intellectual Property information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -107,7 +107,7 @@
         "id": "privacy",
         "label": "Privacy Act",
         "description": "Privacy act information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -115,7 +115,7 @@
         "id": "procurement",
         "label": "Procurement Sensitive",
         "description": "Procurement Sensitive information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -123,7 +123,7 @@
         "id": "space",
         "label": "Space Act",
         "description": "Space Act information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "sensitive"
     },
@@ -131,7 +131,7 @@
         "id": "unreviewed",
         "label": "Unreviewed",
         "description": "Unreviewed information only",
-        "url": "http://inex/Tax%20Knowledge/Pages/Tax%20Knowledge.aspx?fql=(documenttype:%22^Procedures$%22)&q=&f=documenttype:Procedures",
+        "url": "#",
         "slug": "category-slug",
         "parent": "documenttype"
     },
@@ -139,7 +139,7 @@
         "id": "audiences",
         "label": "Audiences",
         "description": "Access Control for files",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -147,7 +147,7 @@
         "id": "users",
         "label": "Users",
         "description": "Users of our system",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "audiences"
     },
@@ -155,7 +155,7 @@
         "id": "researcher",
         "label": "Researchers",
         "description": "Researchers around the world",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "users"
     },
@@ -163,7 +163,7 @@
         "id": "programmers",
         "label": "Programmers",
         "description": "Programmers around the world",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "users"
     },
@@ -171,7 +171,7 @@
         "id": "business",
         "label": "Business Purpose",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },    
@@ -179,7 +179,7 @@
         "id": "ct",
         "label": "Content Types",
         "description": "Access Control for files",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -187,7 +187,7 @@
         "id": "news",
         "label": "News",
         "description": "News Content Type",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "ct"
     },
@@ -195,7 +195,7 @@
         "id": "blogs",
         "label": "Blogs",
         "description": "Blogs Content Type",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "ct"
     },
@@ -203,7 +203,7 @@
         "id": "s-blogs",
         "label": "Security Blogs",
         "description": "Blogs Content Type",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "blogs"
     },
@@ -211,7 +211,7 @@
         "id": "competencies",
         "label": "Competencies",
         "description": "Access Control for files",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -219,7 +219,7 @@
         "id": "ins",
         "label": "Instruments",
         "description": "Access Control for files",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -227,7 +227,7 @@
         "id": "locations",
         "label": "Locations",
         "description": "Locations of our offices",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -235,7 +235,7 @@
         "id": "singapore",
         "label": "Singapore",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "locations"
     },
@@ -243,7 +243,7 @@
         "id": "tp",
         "label": "Raffles Place",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "singapore"
     },
@@ -251,7 +251,7 @@
         "id": "mission",
         "label": "Missions and Projects",
         "description": "Projects and planned missions",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -259,7 +259,7 @@
         "id": "org",
         "label": "Organizations",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -267,7 +267,7 @@
         "id": "sec",
         "label": "Security Systems",
         "description": "Security Offices around the world",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": "org"
     },
@@ -275,7 +275,7 @@
         "id": "sti",
         "label": "STI Subject Categories",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     },
@@ -283,7 +283,7 @@
         "id": "work",
         "label": "Work Breakdown Structure",
         "description": "",
-        "url": "url",
+        "url": "#",
         "slug": "category-slug",
         "parent": null
     }

@@ -561,7 +561,7 @@
 
     $.taxonomyBrowser.defaultOptions = {        
         source: 'json',
-        json: 'json/taxonomy.json', 
+        json: 'json/taxonomy.json?v=1', 
         rootvalue: null, 
         columnclass: '.miller--column', 
         columns: 3, 
