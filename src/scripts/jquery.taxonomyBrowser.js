@@ -43,13 +43,21 @@
         base.$el = $(el);
 
         base.el = el;
+
+        /**
+         * Cache Widths
+         */
+        
+        base.$el._width = base.$el.outerWidth();
        
 
         /**
          * Add a Column Wrapper
          */
         
-        base.$wrap = $('<div class="miller--column--wrap" />').appendTo(base.$el);
+        base.$wrap = $('<div class="miller--column--wrap" />').css({
+          position: "relative"
+        }).appendTo(base.$el);
 
         
         /**
@@ -65,6 +73,12 @@
         base.$el.css({
           minHeight: base.options.columnheight
         });
+
+        /**
+         * Column Width
+         */
+        
+        base._columnWidth = base.$el.outerWidth()/base.options.columns;
 
 
         /**
@@ -172,24 +186,38 @@
          
         base.buildPlaceholder = function(){
             
-            var $container = $('<div />', {
-                'class': 'miller--placeholder'
-                }).appendTo(base.$el),
-                columnWidth = 100/base.options.columns;
+            base.$placeholder = $('<div />', {
+                'class': 'miller--placeholder'                
+                })
+                .css({
+                  'position': 'relative'
+                })
+                .appendTo(base.$el),
+                columnWidth = base.$el._width/base.options.columns;
             
             for(var i = 0; i< base.options.columns; i++){
-                $('<div/>', {
-                    'class': 'miller--placeholder--column'                    
-                }).css({
-                    'height': base.options.columnheight,
-                    'width': columnWidth + '%',
-                    'left': i * columnWidth + '%'
-                }).html('<div class="miller--placeholder__background" />').appendTo($container);
-                
+                base.appendPlaceholder(i);                
             }
             
             
         };
+
+        /**
+         * appendPlaceholder
+         * @param  {[type]} index [description]
+         * @return {[type]}       [description]
+         */
+        
+        base.appendPlaceholder = function(index){
+
+          $('<div/>', {
+              'class': 'miller--placeholder--column'                    
+          }).css({
+              'height': base.options.columnheight,
+              'width': columnWidth,
+              'left': index * columnWidth
+          }).html('<div class="miller--placeholder__background" />').appendTo(base.$placeholder);
+        }
         
         
         /**
@@ -304,14 +332,14 @@
           */
           
           var depth = options.depth || 0,
-              columnWidth = 100/base.options.columns,
+              columnWidth = base.$el._width/base.options.columns,
               $column = $('<div />', {
                 'class': base.options.columnclass.replace('.',''),
                 'data-depth': depth,
                 'tabindex': depth
               }).css({
                 'height': base.options.columnheight,
-                'width': columnWidth + '%'
+                'width': columnWidth
               }),
               taxonomy = options.taxonomy;
 
@@ -368,26 +396,41 @@
           /**
            * Append 
            */
-          
 
           
-          if(depth < base.options.columns)  {
-            
-            $column.appendTo(base.$wrap);
+          var slideDepth = (depth >= base.options.columns)?  depth - base.options.columns + 1: 0;
+          
 
+          base.$wrap.animate({
+            left: - (slideDepth * base._columnWidth)
+          },200);
 
-            /**
-             * Trigger before:append
-             * taxonomy object can be modified here 
-             * $('.miller--columns').bind('after:append', function(event, taxonomy, depth){
-             *    ......
-             *    return taxonomy; // Modified Taxonomy 
-             * })
-             */
+          base.$placeholder.animate({
+            left: - (slideDepth * base._columnWidth)
+          },200);
 
-            base.$el.trigger('after:append', [taxonomy, depth]);            
-
+          
+          /** 
+           * Create New Placeholder Column if depth > base.options.columns
+           */
+          
+          if(depth >= base.options.columns){
+            base.appendPlaceholder(depth);
           }
+            
+          $column.appendTo(base.$wrap);
+
+
+          /**
+           * Trigger before:append
+           * taxonomy object can be modified here 
+           * $('.miller--columns').bind('after:append', function(event, taxonomy, depth){
+           *    ......
+           *    return taxonomy; // Modified Taxonomy 
+           * })
+           */
+
+          base.$el.trigger('after:append', [taxonomy, depth]);            
 
 
           

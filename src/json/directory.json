@@ -1,0 +1,164 @@
+[
+    {
+        "id": "shopping",
+        "label": "Shopping",
+        "description": "",        
+        "parent": null
+    },
+    {
+        "id": "dining",
+        "label": "Dining &amp; Gourmet",
+        "description": "",                
+        "parent": null
+    },
+    {
+        "id": "services",
+        "label": "Services",
+        "description": "",                
+        "parent": null
+    },
+    {
+        "id": "events",
+        "label": "Events",
+        "description": "",                
+        "parent": null
+    },
+    {
+        "id": "luxury",
+        "label": "Luxury Fashion and Fashion Accessories",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "fashion",
+        "label": "Fashion",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "jewellery",
+        "label": "Jewellery &amp; Watches",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "handbags",
+        "label": "Handbags, Shoes and Accessories",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "beauty",
+        "label": "Beauty, Wellness and Sports",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "books",
+        "label": "Books, Music and Lifestyle",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "electronics",
+        "label": "Electronics and Telecommunications",
+        "description": "",                
+        "parent": "shopping"
+    },
+    {
+        "id": "restaurants",
+        "label": "Restaurants and Bars",
+        "description": "",                
+        "parent": "dining"
+    },
+    {
+        "id": "ion",
+        "label": "ION Food Mall",
+        "description": "",                
+        "parent": "dining"
+    },
+    {
+        "id": "casual",
+        "label": "Casual Dining and Fast Food",
+        "description": "",                
+        "parent": "dining"
+    },
+    {
+        "id": "deli",
+        "label": "Deli and Confectionary",
+        "description": "",                
+        "parent": "dining"
+    },
+    {
+        "id": "gourmet",
+        "label": "Gourmet Food &amp; Cafe",
+        "description": "",                
+        "parent": "dining"
+    },
+    {
+        "id": "atms",
+        "label": "ATMs/Banks",
+        "description": "",                
+        "parent": "services"
+    },
+    {
+        "id": "general",
+        "label": "General Services",
+        "description": "",                
+        "parent": "services"
+    },
+    {
+        "id": "concierge",
+        "label": "Concierge",
+        "description": "",                
+        "parent": "services"
+    },
+    {
+        "id": "spaces",
+        "label": "Event Spaces",
+        "description": "",                
+        "parent": "events"
+    },
+    {
+        "id": "bally",
+        "label": "Bally",
+        "description": "",                
+        "parent": "luxury"
+    },
+    {
+        "id": "7",
+        "label": "7 for all manking",
+        "description": "",                
+        "parent": "fashion"
+    },
+    {
+        "id": "aeropostale",
+        "label": "Aeropostale",
+        "description": "",                
+        "parent": "fashion"
+    },
+    {
+        "id": "men",
+        "label": "Men",
+        "description": "",                
+        "parent": "fashion"
+    },
+    {
+        "id": "shirts",
+        "label": "Shirts",
+        "description": "",                
+        "parent": "men"
+    },
+    {
+        "id": "plaid",
+        "label": "Plaid Shirts",
+        "description": "",                
+        "parent": "shirts"
+    },
+    {
+        "id": "plaid2",
+        "label": "Plaid Shirts",
+        "description": "",                
+        "parent": "plaid"
+    }
+]
