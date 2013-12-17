@@ -151,7 +151,8 @@
                   label: label,
                   id: id,
                   slug: id,
-                  parent: parent                  
+                  parent: parent,
+                  url: $child.attr('href') || '#'
                 });
 
 
